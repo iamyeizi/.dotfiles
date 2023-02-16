@@ -137,7 +137,7 @@ installed(){
   sdk list $1 | grep installed
 }
 c0nda(){
-  source ''$HOME'/Developer/.conda_'$1'.sh';
+  source ''$HOME'/Developer/.dotfiles/.conda_'$1'.sh';
   conda env list
 }
 #------------------------
