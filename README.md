@@ -2,47 +2,58 @@
 
 ## Steps to bootstrap a new Mac
 
-1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
+### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
 
 ```zsh
 xcode-select --install
 ```
 
+### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) 
 
-2. Clone repo into new hidden directory.
+### 3. Clone repo into new hidden directory.
 
+Use **SSH** (if set up)...
 ```zsh
-# Use SSH (if set up)...
 git clone git@github.com:iamyeizi/dotfiles ~/Developer/.dotfiles
-
-# ...or use HTTPS and switch remotes later.
+```
+...or use **HTTPS** and switch remotes later.
+```zsh
 git clone https://github.com/iamyeizi/dotfiles.git ~/Developer/.dotfiles
 ```
 
+### 4. Create symlinks in the Home directory to the real files in the repo.
 
-3. Create symlinks in the Home directory to the real files in the repo.
+There are better and less manual ways to do this.
+<br/>
+Investigate install scripts and bootstrapping tools.
+```zsh
+ln -s ~/Developer/.dotfiles/.zshrc ~/.zshrc
+```
 
 ```zsh
-# There are better and less manual ways to do this;
-# investigate install scripts and bootstrapping tools.
-
-ln -s ~/Developer/.dotfiles/.zshrc ~/.zshrc
 ln -s ~/Developer/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 
-4. Install Homebrew, followed by the software listed in the Brewfile.
+### 5. Install Homebrew, followed by the software listed in the Brewfile.
+
+These could also be in an install script.
+<br/>
+Install Homebrew
 
 ```zsh
-# These could also be in an install script.
-
-# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-# Then pass in the Brewfile location...
+Then pass in the Brewfile location...
+
+```zsh
 brew bundle --file ~/Developer/.dotfiles/Brewfile
+```
 
-# ...or move to the directory first.
+...or move to the directory first.
+
+```zsh
 cd ~/Developer/.dotfiles && brew bundle
 ```
 
