@@ -76,7 +76,6 @@ cd ~/Developer/.dotfiles && brew bundle
   - Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://www.torrentmac.net/?s=parallels), [M3](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
   - [BGH Smart Control for iPad](https://apps.apple.com/ar/app/bgh-smart-control/id934510376?l=en)
   - [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
-  - [Stats](https://github.com/exelban/stats/releases/latest/download/Stats.dmg)
   - [TinkerTool](https://www.bresink.com/osx/0TinkerTool/download.php)
   - [Tot](https://apps.apple.com/ar/app/tot/id1491071483?l=en&mt=12)
   - [Wappalyzer for Safari](https://apps.apple.com/ar/app/wappalyzer/id1520333300?l=en&mt=12)
