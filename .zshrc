@@ -108,31 +108,39 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # GENERAL ALIASES
-alias ls='logo-ls'
-alias cd..='cd ..'
+alias ls='colorls'
 alias zr='source ~/.zshrc'
 alias asitop='sudo asitop'
 alias py='python3'
-alias pn=pnpm
-alias pnx='pnpm exec'
+alias npm='pn'
+alias npx='pnx'
+alias pn='pnpm'
+alias pnx='pnpm dlx'
+alias per='cd /Users/yeizi/dev/personal'
+alias wk='cd /Users/yeizi/dev/work'
+alias nvm='fnm'
 #------------------------
 
 #FUNCTIONAL ALIASES
 installed(){
   sdk list $1 | grep installed
 }
-c0nda(){
-  source ''$HOME'/Developer/.dotfiles/.conda_'$1'.sh';
+kon(){
+  source ''$HOME'/dev/.dotfiles/.conda_'$1'.sh';
   conda env list
+}
+konD(){
+  conda deactivate;
+  conda deactivate;
+  conda deactivate;
+  conda deactivate;
+  conda deactivate;
+  conda deactivate
 }
 #------------------------
 
 #PATHS
 export PATH="/usr/local/sbin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="/Users/yeizi/Library/Python/3.9/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -143,3 +151,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PNPM_HOME="/Users/yeizi/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+#fnm node manager
+eval "$(fnm env --use-on-cd)"
