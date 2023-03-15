@@ -14,11 +14,11 @@ xcode-select --install
 
 Use **SSH** (if set up)...
 ```zsh
-git clone git@github.com:iamyeizi/dotfiles ~/Developer/.dotfiles
+git clone git@github.com:iamyeizi/dotfiles ~/dev/.dotfiles
 ```
 ...or use **HTTPS** and switch remotes later.
 ```zsh
-git clone https://github.com/iamyeizi/dotfiles.git ~/Developer/.dotfiles
+git clone https://github.com/iamyeizi/dotfiles.git ~/dev/.dotfiles
 ```
 
 ### 4. Create symlinks in the Home directory to the real files in the repo.
@@ -27,11 +27,11 @@ There are better and less manual ways to do this.
 <br/>
 Investigate install scripts and bootstrapping tools.
 ```zsh
-ln -s ~/Developer/.dotfiles/.zshrc ~/.zshrc
+ln -s ~/dev/.dotfiles/.zshrc ~/.zshrc
 ```
 
 ```zsh
-ln -s ~/Developer/.dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dev/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 
@@ -48,13 +48,13 @@ Install Homebrew
 Then pass in the Brewfile location...
 
 ```zsh
-brew bundle --file ~/Developer/.dotfiles/Brewfile
+brew bundle --file ~/dev/.dotfiles/Brewfile
 ```
 
 ...or move to the directory first.
 
 ```zsh
-cd ~/Developer/.dotfiles && brew bundle
+cd ~/dev/.dotfiles && brew bundle
 ```
 
 ---
@@ -92,24 +92,3 @@ cd ~/Developer/.dotfiles && brew bundle
 - Learn how to use [`defaults`](https://macos-defaults.com/#%F0%9F%99%8B-what-s-a-defaults-command) to record and restore System Preferences and other macOS configurations.
 - Make a checklist of steps to decommission your computer before wiping your hard drive.
 - Integrate other cloud services into your Dotfiles process (Dropbox, Google Drive, etc.).
-
----
-## Keys
-
-<details>
- <summary>AirBuddy</summary>
-
- ```
-5F502BB8-8B1C573F-69F6C0BE-893B9417-1F53E973
-```
-
-</details>
-
-<details>
-  <summary>SoundSource</summary>
-
-```
-ZLAT-YM6Z-YKYD-2JUZ-F9VF-NN4C-DHX3-M2U3-J23G
-```
-
-</details>
