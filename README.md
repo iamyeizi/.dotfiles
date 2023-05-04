@@ -3,6 +3,12 @@
 ## Steps to bootstrap a new Mac
 <br/>
 
+### Make dev, personal and work directories
+```zsh
+cd $HOME && mkdir -p dev/personal dev/work
+```
+<br/>
+
 ### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
 
 ```zsh
