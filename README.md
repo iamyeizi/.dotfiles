@@ -105,9 +105,3 @@ conda init "$(basename "${SHELL}")"
     - [iBoysoft NTFS for Mac](https://setapp.com/apps/iboysoft-ntfs-for-mac)
     - [One Switch](https://setapp.com/apps/one-switch)
     - [PopClip](https://setapp.com/apps/popclip)
-    
-<br />
-
-- Learn how to use [`defaults`](https://macos-defaults.com/#%F0%9F%99%8B-what-s-a-defaults-command) to record and restore System Preferences and other macOS configurations.
-- Make a checklist of steps to decommission your computer before wiping your hard drive.
-- Integrate other cloud services into your Dotfiles process (Dropbox, Google Drive, etc.).
