@@ -20,8 +20,12 @@ git clone git@github.com:iamyeizi/dotfiles ~/dev/.dotfiles
 ```zsh
 git clone https://github.com/iamyeizi/dotfiles.git ~/dev/.dotfiles
 ```
+### 4. Install ***oh-my-zsh*** now
+```zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
-### 4. Create symlinks in the Home directory to the real files in the repo.
+### 5. Create symlinks in the Home directory to the real files in the repo.
 
 There are better and less manual ways to do this.
 <br/>
@@ -35,7 +39,7 @@ ln -s ~/dev/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 
-### 5. Install Homebrew, followed by the software listed in the Brewfile.
+### 6. Install Homebrew, followed by the software listed in the Brewfile.
 
 These could also be in an install script.
 <br/>
@@ -56,9 +60,16 @@ brew bundle --file ~/dev/.dotfiles/Brewfile
 ```zsh
 cd ~/dev/.dotfiles && brew bundle
 ```
-
 ---
-## TODO List
+## Install fonts
+
+- [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/JetBrainsMono.zip)
+- [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/Iosevka.zip)
+- [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/Hack.zip)
+- [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/FiraCode.zip)
+- [Consolas Font](https://www.dafontfree.io/download/consolas/?wpdmdl=71932&refresh=6452d591647521683150225&ind=1612712158037&filename=Consolas-Font.zip)
+---
+## Other apps
 
 - Install missing apps such as:
   - [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
