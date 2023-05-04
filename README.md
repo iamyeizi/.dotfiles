@@ -1,23 +1,21 @@
 # dotfiles
+  - [ ] It remains to make a script (`.sh`) to install everything at once.
+  ---
 
 ## Steps to bootstrap a new Mac
-<br/>
 
 ### Make dev, personal and work directories
 ```zsh
 cd $HOME && mkdir -p dev/personal dev/work
 ```
-<br/>
 
 ### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
 
 ```zsh
 xcode-select --install
 ```
-<br/>
 
 ### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) 
-<br/>
 
 ### 3. Clone repo into new hidden directory.
 
@@ -29,19 +27,15 @@ git clone git@github.com:iamyeizi/dotfiles ~/dev/.dotfiles
 ```zsh
 git clone https://github.com/iamyeizi/dotfiles.git ~/dev/.dotfiles
 ```
-<br/>
 
 ### 4. Install ***oh-my-zsh*** now
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-<br/>
 
 ### 5. Create symlinks in the Home directory to the real files in the repo.
 
-There are better and less manual ways to do this.
-<br/>
-Investigate install scripts and bootstrapping tools.
+There are better and less manual ways to do this. Investigate install scripts and bootstrapping tools.
 
 ```zsh
 ln -s ~/dev/.dotfiles/.zshrc ~/.zshrc
@@ -53,13 +47,10 @@ Conda base config
 ```zsh
 ln -s ~/dev/.dotfiles/.condarc ~/.condarc
 ```
-<br/>
 
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
 
-These could also be in an install script.
-<br/>
-Install Homebrew
+These could also be in an install script. Install Homebrew
 
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -76,14 +67,12 @@ brew bundle --file ~/dev/.dotfiles/Brewfile
 ```zsh
 cd ~/dev/.dotfiles && brew bundle
 ```
-<br/>
 
 ### 7. Setup Miniconda
 
 ```zsh
 conda init "$(basename "${SHELL}")"
 ```
-<br/>
 
 ---
 
