@@ -108,7 +108,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # GENERAL ALIASES
-alias ls='colorls'
+alias f='fzf'
+alias fd='cd $(find . -type d -print | fzf)'
+alias ls='lsd'
+alias lt='l --tree'
+alias la='ls -a'
+alias lat='la --tree'
 alias zr='source ~/.zshrc'
 alias asitop='sudo asitop'
 alias py='python3'
@@ -118,7 +123,10 @@ alias pn='pnpm'
 alias pnx='pnpm dlx'
 alias per='cd /Users/yeizi/dev/personal'
 alias wk='cd /Users/yeizi/dev/work'
+alias dsw='cd /Users/yeizi/Library/CloudStorage/GoogleDrive-juancruzariatiservio@gmail.com/My\ Drive/UTN/2023/DSW'
 alias nvm='fnm'
+alias demo='code /Users/yeizi/dev/personal/neoris/angular-demo'
+
 #------------------------
 
 #FUNCTIONAL ALIASES
@@ -139,6 +147,8 @@ konD(){
 }
 #------------------------
 
+ . /opt/homebrew/etc/profile.d/z.sh
+
 #PATHS
 export PATH="/usr/local/sbin:$PATH"
 
@@ -151,8 +161,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PNPM_HOME="/Users/yeizi/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 #fnm node manager
 eval "$(fnm env --use-on-cd)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -3,5 +3,3 @@
 	email = juancruzariatiservio@gmail.com
 [core]
 	editor = code --wait
-[init]
-	defaultBranch = ""
