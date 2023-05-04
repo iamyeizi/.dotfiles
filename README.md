@@ -1,14 +1,17 @@
 # dotfiles
 
 ## Steps to bootstrap a new Mac
+<br/>
 
 ### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
 
 ```zsh
 xcode-select --install
 ```
+<br/>
 
 ### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) 
+<br/>
 
 ### 3. Clone repo into new hidden directory.
 
@@ -20,24 +23,31 @@ git clone git@github.com:iamyeizi/dotfiles ~/dev/.dotfiles
 ```zsh
 git clone https://github.com/iamyeizi/dotfiles.git ~/dev/.dotfiles
 ```
+<br/>
+
 ### 4. Install ***oh-my-zsh*** now
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+<br/>
 
 ### 5. Create symlinks in the Home directory to the real files in the repo.
 
 There are better and less manual ways to do this.
 <br/>
 Investigate install scripts and bootstrapping tools.
+
 ```zsh
 ln -s ~/dev/.dotfiles/.zshrc ~/.zshrc
 ```
-
 ```zsh
 ln -s ~/dev/.dotfiles/.gitconfig ~/.gitconfig
 ```
-
+Conda base config
+```zsh
+ln -s ~/dev/.dotfiles/.condarc ~/.condarc
+```
+<br/>
 
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
 
@@ -60,7 +70,17 @@ brew bundle --file ~/dev/.dotfiles/Brewfile
 ```zsh
 cd ~/dev/.dotfiles && brew bundle
 ```
+<br/>
+
+### 7. Setup Miniconda
+
+```zsh
+conda init "$(basename "${SHELL}")"
+```
+<br/>
+
 ---
+
 ## Install fonts
 
 - [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/JetBrainsMono.zip)
@@ -69,6 +89,7 @@ cd ~/dev/.dotfiles && brew bundle
 - [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/FiraCode.zip)
 - [Consolas Font](https://www.dafontfree.io/download/consolas/?wpdmdl=71932&refresh=6452d591647521683150225&ind=1612712158037&filename=Consolas-Font.zip)
 ---
+
 ## Other apps
 
 - Install missing apps such as:

@@ -133,18 +133,6 @@ alias demo='code /Users/yeizi/dev/personal/neoris/angular-demo'
 installed(){
   sdk list $1 | grep installed
 }
-kon(){
-  source ''$HOME'/dev/.dotfiles/.conda_'$1'.sh';
-  conda env list
-}
-konD(){
-  conda deactivate;
-  conda deactivate;
-  conda deactivate;
-  conda deactivate;
-  conda deactivate;
-  conda deactivate
-}
 #------------------------
 
  . /opt/homebrew/etc/profile.d/z.sh
@@ -152,7 +140,6 @@ konD(){
 #PATHS
 export PATH="/usr/local/sbin:$PATH"
 
-export PATH="/Users/yeizi/Library/Python/3.9/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -161,7 +148,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PNPM_HOME="/Users/yeizi/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 #fnm node manager
 eval "$(fnm env --use-on-cd)"

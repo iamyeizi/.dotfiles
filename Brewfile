@@ -16,6 +16,7 @@ brew "z"
 brew "lsd"
 
 # Casks
+cask "miniconda"
 cask "amethyst"
 cask "blackhole-2ch"
 cask "google-chrome"
