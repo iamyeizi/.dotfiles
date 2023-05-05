@@ -8,8 +8,6 @@ brew "sdkman-cli"
 brew "fnm"
 # 📦🚀 Fast, disk space efficient package manager
 brew "pnpm"
-# Fuzzy finder
-brew "fzf"
 # Z, remember the most frequently used directories
 brew "z"
 # LSD, ls with steroids
@@ -24,7 +22,6 @@ cask "warp"
 cask "visual-studio-code"
 cask "intellij-idea"
 cask "shottr"
-cask "topnotch"
 cask "airbuddy"
 cask "alt-tab"
 cask "appcleaner"

@@ -108,14 +108,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # GENERAL ALIASES
-alias f='fzf'
-alias fd='cd $(find . -type d -print | fzf)'
 alias ls='lsd'
 alias lt='l --tree'
 alias la='ls -a'
 alias lat='la --tree'
 alias zr='source ~/.zshrc'
-alias asitop='sudo asitop'
 alias py='python3'
 alias npm='pn'
 alias npx='pnx'
@@ -151,8 +148,6 @@ export PATH="$PNPM_HOME:$PATH"
 
 #fnm node manager
 eval "$(fnm env --use-on-cd)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
