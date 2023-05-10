@@ -6,7 +6,7 @@
 
 ### Make dev, personal and work directories
 ```zsh
-cd $HOME && mkdir -p dev/personal dev/work
+cd $HOME && mkdir -p personal work
 ```
 
 ### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
@@ -21,11 +21,11 @@ xcode-select --install
 
 Use **SSH** (if set up)...
 ```zsh
-git clone git@github.com:iamyeizi/dotfiles ~/dev/.dotfiles
+git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
 ```
 ...or use **HTTPS** and switch remotes later.
 ```zsh
-git clone https://github.com/iamyeizi/dotfiles.git ~/dev/.dotfiles
+git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
 ```
 
 ### 4. Install ***oh-my-zsh*** now
@@ -38,14 +38,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 There are better and less manual ways to do this. Investigate install scripts and bootstrapping tools.
 
 ```zsh
-ln -s ~/dev/.dotfiles/.zshrc ~/.zshrc
+ln -s ~/.dotfiles/.zshrc ~/.zshrc
 ```
 ```zsh
-ln -s ~/dev/.dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 Conda base config
 ```zsh
-ln -s ~/dev/.dotfiles/.condarc ~/.condarc
+ln -s ~/.dotfiles/.condarc ~/.condarc
 ```
 
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
@@ -59,13 +59,13 @@ These could also be in an install script. Install Homebrew
 Then pass in the Brewfile location...
 
 ```zsh
-brew bundle --file ~/dev/.dotfiles/Brewfile
+brew bundle --file ~/.dotfiles/Brewfile
 ```
 
 ...or move to the directory first.
 
 ```zsh
-cd ~/dev/.dotfiles && brew bundle
+cd ~/.dotfiles && brew bundle
 ```
 
 ### 7. Setup Miniconda
