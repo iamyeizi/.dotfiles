@@ -114,15 +114,12 @@ alias la='ls -a'
 alias lat='la --tree'
 alias zr='source ~/.zshrc'
 alias py='python3'
-# alias npm='pn'
-# alias npx='pnx'
 alias pn='pnpm'
 alias pnx='pnpm dlx'
-alias per='cd /Users/yeizi/dev/personal'
-alias wk='cd /Users/yeizi/dev/work'
+alias per='cd /Users/yeizi/personal'
+alias wk='cd /Users/yeizi/work'
 alias dsw='cd /Users/yeizi/Library/CloudStorage/GoogleDrive-juancruzariatiservio@gmail.com/My\ Drive/UTN/2023/DSW'
 alias nvm='fnm'
-alias demo='code /Users/yeizi/dev/personal/neoris/angular-demo'
 
 #------------------------
 
