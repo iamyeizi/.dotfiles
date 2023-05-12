@@ -91,7 +91,6 @@ conda init "$(basename "${SHELL}")"
   - [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
   - [FluTooth](https://goodsnooze.gumroad.com/l/flutooth)
   - [ImageOptim](https://imageoptim.com/ImageOptim1.9.0.tar.xz) for arm
-  - [Excel](https://apps.apple.com/ar/app/microsoft-excel/id462058435?l=en&mt=12) and [PowerPoint](https://apps.apple.com/ar/app/microsoft-powerpoint/id462062816?l=en&mt=12)
   - Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://www.torrentmac.net/?s=parallels), [M3](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
   - [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
   - **SetApp:**
@@ -99,4 +98,3 @@ conda init "$(basename "${SHELL}")"
     - [ClearVPN](https://setapp.com/apps/clearvpn)
     - [iBoysoft NTFS for Mac](https://setapp.com/apps/iboysoft-ntfs-for-mac)
     - [One Switch](https://setapp.com/apps/one-switch)
-    - [PopClip](https://setapp.com/apps/popclip)
