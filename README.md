@@ -93,6 +93,7 @@ conda init "$(basename "${SHELL}")"
   - [ImageOptim](https://imageoptim.com/ImageOptim1.9.0.tar.xz) for arm
   - Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://www.torrentmac.net/?s=parallels), [M3](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
   - [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
+  - [The Unarchiver](https://apps.apple.com/ar/app/the-unarchiver/id425424353?l=en&mt=12)
   - **SetApp:**
     - [Bartender](https://setapp.com/apps/bartender)
     - [ClearVPN](https://setapp.com/apps/clearvpn)
