@@ -118,7 +118,6 @@ alias pn='pnpm'
 alias pnx='pnpm dlx'
 alias per='cd /Users/yeizi/personal'
 alias wk='cd /Users/yeizi/work'
-alias dsw='cd /Users/yeizi/Library/CloudStorage/GoogleDrive-juancruzariatiservio@gmail.com/My\ Drive/UTN/2023/DSW'
 alias nvm='fnm'
 
 #------------------------
@@ -161,3 +160,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# Github Copilot CLI
+eval "$(github-copilot-cli alias -- "$0")"
