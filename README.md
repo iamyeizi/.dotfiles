@@ -77,8 +77,6 @@ conda init "$(basename "${SHELL}")"
 ---
 
 ## Install fonts
-
-- [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/Iosevka.zip)
 - [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/Hack.zip)
 
 
@@ -90,7 +88,6 @@ conda init "$(basename "${SHELL}")"
   - [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
   - [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
   - [FluTooth](https://goodsnooze.gumroad.com/l/flutooth)
-  - [ImageOptim](https://imageoptim.com/ImageOptim1.9.0.tar.xz) for arm
   - Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://www.torrentmac.net/?s=parallels), [M3](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
   - [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
   - [The Unarchiver](https://apps.apple.com/ar/app/the-unarchiver/id425424353?l=en&mt=12)
