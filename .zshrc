@@ -113,6 +113,9 @@ alias zr='source ~/.zshrc'
 alias py='python3'
 alias per='cd /Users/yeizi/personal'
 alias wk='cd /Users/yeizi/work'
+alias fh='cd $(find . -type d -print | fzf --height 50%)'
+alias f='cd $(find ~ -type d -print | fzf --height 50%)'
+
 #------------------------
 
 #FUNCTIONAL ALIASES
