@@ -1,10 +1,14 @@
 # dotfiles
-  - [ ] It remains to make a script (`.sh`) to install everything at once.
-  ---
+
+-   [ ] It remains to make a script (`.sh`) to install everything at once.
+-   Like [ThePrimeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles)
+
+---
 
 ## Steps to bootstrap a new Mac
 
 ### Make dev, personal and work directories
+
 ```zsh
 cd $HOME && mkdir -p personal work
 ```
@@ -15,20 +19,24 @@ cd $HOME && mkdir -p personal work
 xcode-select --install
 ```
 
-### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) 
+### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
 ### 3. Clone repo into new hidden directory.
 
 Use **SSH** (if set up)...
+
 ```zsh
 git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
 ```
+
 ...or use **HTTPS** and switch remotes later.
+
 ```zsh
 git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
 ```
 
-### 4. Install ***oh-my-zsh*** now
+### 4. Install **_oh-my-zsh_** now
+
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
@@ -40,10 +48,13 @@ There are better and less manual ways to do this. Investigate install scripts an
 ```zsh
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
 ```
+
 ```zsh
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
+
 Conda base config
+
 ```zsh
 ln -s ~/.dotfiles/.condarc ~/.condarc
 ```
@@ -77,17 +88,23 @@ conda init "$(basename "${SHELL}")"
 ---
 
 ## Install fonts
-- [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/Hack.zip)
 
+-   [Hack Nerd Font](https://www.nerdfonts.com/font-downloads)
+-   [Iosevka Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 ---
 
 ## Other apps
 
-- Install missing apps such as:
-  - [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
-  - [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
-  - [FluTooth](https://goodsnooze.gumroad.com/l/flutooth)
-  - Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://www.torrentmac.net/?s=parallels), [M3](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
-  - [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
-  - [The Unarchiver](https://apps.apple.com/ar/app/the-unarchiver/id425424353?l=en&mt=12)
+-   Install missing apps such as:
+    -   [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
+    -   [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
+    -   Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
+    -   [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
+    -   [The Unarchiver](https://apps.apple.com/ar/app/the-unarchiver/id425424353?l=en&mt=12)
+    -   [Bartender](https://setapp.com/apps/bartender)
+    -   [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
+    -   [One Switch](https://setapp.com/apps/one-switch)
+    -   [CleanShot X](https://setapp.com/apps/cleanshot)
+    -   [TouchRetouch](https://setapp.com/apps/touchretouch)
+    -   [ClearVPN](https://setapp.com/apps/clearvpn)

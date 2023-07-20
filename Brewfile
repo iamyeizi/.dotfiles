@@ -10,17 +10,13 @@ brew "fnm"
 brew "pnpm"
 # Z, remember the most frequently used directories
 brew "z"
-# LSD, ls with steroids
-brew "lsd"
 
 # Casks
 cask "miniconda"
 cask "blackhole-2ch"
 cask "google-chrome"
-cask "warp"
 cask "visual-studio-code"
 cask "intellij-idea"
-cask "shottr"
 cask "appcleaner"
 cask "docker"
 cask "setapp"

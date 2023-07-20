@@ -108,18 +108,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # GENERAL ALIASES
-alias ls='lsd'
-alias lt='l --tree'
 alias la='ls -a'
-alias lat='la --tree'
 alias zr='source ~/.zshrc'
 alias py='python3'
-alias pn='pnpm'
-alias pnx='pnpm dlx'
 alias per='cd /Users/yeizi/personal'
 alias wk='cd /Users/yeizi/work'
-alias nvm='fnm'
-
 #------------------------
 
 #FUNCTIONAL ALIASES
@@ -159,9 +152,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-# Github Copilot CLI
-eval "$(github-copilot-cli alias -- "$0")"
