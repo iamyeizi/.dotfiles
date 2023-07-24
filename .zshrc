@@ -115,7 +115,8 @@ alias per='cd /Users/yeizi/personal'
 alias wk='cd /Users/yeizi/work'
 alias fh='cd $(find . -type d -print | fzf --height 50%)'
 alias f='cd $(find ~ -type d -print | fzf --height 50%)'
-
+alias gs='git status'
+alias cat='bat --paging=never'
 #------------------------
 
 #FUNCTIONAL ALIASES

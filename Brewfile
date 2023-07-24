@@ -11,6 +11,8 @@ brew "pnpm"
 # Z, remember the most frequently used directories
 brew "z"
 
+brew "bat"
+
 # Casks
 cask "miniconda"
 cask "blackhole-2ch"
