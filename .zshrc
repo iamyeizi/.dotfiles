@@ -114,15 +114,28 @@ alias py='python3'
 alias per='cd /Users/yeizi/personal'
 alias wk='cd /Users/yeizi/work'
 alias fh='cd $(find . -type d -print | fzf --height 50%)'
-alias f='cd $(find ~ -type d -print | fzf --height 50%)'
+alias f='ranger'
 alias gs='git status'
 alias cat='bat --paging=never'
+alias top='bpytop'
+alias top2='asitop'
 #------------------------
 
 #FUNCTIONAL ALIASES
 installed(){
   sdk list $1 | grep installed
 }
+
+function git_checkout(){
+	if [ $# -eq 0 ]
+	then
+		git checkout $(git branch | fzf --height 20%)
+	else
+		git checkout $@
+	fi 
+};
+
+alias gco="git_checkout"
 #------------------------
 
  . /opt/homebrew/etc/profile.d/z.sh
