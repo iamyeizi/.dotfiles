@@ -59,6 +59,11 @@ Conda base config
 ln -s ~/.dotfiles/.condarc ~/.condarc
 ```
 
+```zsh
+ln -s ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
+
+```
+
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
 
 These could also be in an install script. Install Homebrew
