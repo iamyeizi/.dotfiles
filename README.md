@@ -46,21 +46,21 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 There are better and less manual ways to do this. Investigate install scripts and bootstrapping tools.
 
 ```zsh
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
+ln -fs ~/.dotfiles/.zshrc ~/.zshrc
 ```
 
 ```zsh
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 Conda base config
 
 ```zsh
-ln -s ~/.dotfiles/.condarc ~/.condarc
+ln -fs ~/.dotfiles/.condarc ~/.condarc
 ```
 
 ```zsh
-ln -s ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
+ln -fs ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
 
 ```
 
