@@ -89,7 +89,7 @@ conda init "$(basename "${SHELL}")"
 
 ## Install fonts
 
--   [Hack Nerd Font](https://www.nerdfonts.com/font-downloads)
+-   [MesloLGS Nerd Font](https://www.nerdfonts.com/font-downloads)
 -   [Iosevka Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 ---
@@ -101,7 +101,6 @@ conda init "$(basename "${SHELL}")"
     -   [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
     -   Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
     -   [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
-    -   [The Unarchiver](https://apps.apple.com/ar/app/the-unarchiver/id425424353?l=en&mt=12)
     -   [Bartender](https://setapp.com/apps/bartender)
     -   [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
     -   [One Switch](https://setapp.com/apps/one-switch)

@@ -11,7 +11,17 @@ brew "pnpm"
 # Z, remember the most frequently used directories
 brew "z"
 
+brew "ripgrep"
+
+brew "bpytop"
+
+brew "tmux"
+
+brew "ranger"
+
 brew "bat"
+
+brew "fzf"
 
 # Casks
 cask "miniconda"
@@ -27,3 +37,12 @@ cask "raycast"
 cask "mouse-fix"
 cask "monitorcontrol"
 cask "google-drive"
+cask "amethyst"
+cask "deepl"
+cask "obs"
+cask "plex-media-server"
+cask "spotify"
+cask "the-unarchiver"
+cask "transmission"
+cask "vlc"
+cask "zoom"
