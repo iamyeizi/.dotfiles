@@ -57,15 +57,14 @@ ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/.dotfiles/raycast ~/.config
 ```
 
+```zsh
+ln -fs ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
+```
+
 Conda base config
 
 ```zsh
 ln -fs ~/.dotfiles/.condarc ~/.condarc
-```
-
-```zsh
-ln -fs ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
-
 ```
 
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
