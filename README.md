@@ -53,6 +53,10 @@ ln -fs ~/.dotfiles/.zshrc ~/.zshrc
 ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
+```zsh
+ln -fs ~/.dotfiles/raycast ~/.config
+```
+
 Conda base config
 
 ```zsh
