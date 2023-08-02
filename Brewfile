@@ -15,6 +15,7 @@ brew "bat"
 brew "fzf"
 brew "git-delta"
 
+cask "hyperkey"
 cask "miniconda"
 cask "blackhole-2ch"
 cask "google-chrome"
