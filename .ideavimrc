@@ -10,6 +10,17 @@ set showmode
 " text scroll if you mouse-click near the start or end of the window.
 set scrolloff=5
 
+set mouse=a
+set tabstop=4
+set shiftwidth=4
+set ruler
+set ai
+set hlsearch
+set number
+set clipboard=unnamed
+set relativenumber
+set laststatus=2
+
 " Do incremental searching.
 set incsearch
 
@@ -34,3 +45,4 @@ Plug 'tpope/vim-commentary'
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
 
+set clipboard^=ideaput
