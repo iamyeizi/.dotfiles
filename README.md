@@ -54,10 +54,6 @@ ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/raycast ~/.config
-```
-
-```zsh
 ln -fs ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
 ```
 
