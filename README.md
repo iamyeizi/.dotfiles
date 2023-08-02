@@ -50,6 +50,18 @@ ln -fs ~/.dotfiles/.zshrc ~/.zshrc
 ```
 
 ```zsh
+ln -fs ~/.dotfiles/.tmux.conf ~/.tmux.conf
+```
+
+```zsh
+ln -fs ~/.dotfiles/.vimrc ~/.vimrc
+```
+
+```zsh
+ln -fs ~/.dotfiles/.ideavimrc ~/.ideavimrc
+```
+
+```zsh
 ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
@@ -91,23 +103,14 @@ conda init "$(basename "${SHELL}")"
 
 ---
 
-## Install fonts
-
--   [MesloLGS Nerd Font](https://www.nerdfonts.com/font-downloads)
--   [Iosevka Nerd Font](https://www.nerdfonts.com/font-downloads)
-
----
-
-## Other apps
-
--   Install missing apps such as:
-    -   [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
-    -   [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
-    -   Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
-    -   [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
-    -   [Bartender](https://setapp.com/apps/bartender)
-    -   [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
-    -   [One Switch](https://setapp.com/apps/one-switch)
-    -   [CleanShot X](https://setapp.com/apps/cleanshot)
-    -   [TouchRetouch](https://setapp.com/apps/touchretouch)
-    -   [ClearVPN](https://setapp.com/apps/clearvpn)
+## Missing apps
+-   [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
+-   [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
+-   Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
+-   [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
+-   [Bartender](https://setapp.com/apps/bartender)
+-   [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
+-   [One Switch](https://setapp.com/apps/one-switch)
+-   [CleanShot X](https://setapp.com/apps/cleanshot)
+-   [TouchRetouch](https://setapp.com/apps/touchretouch)
+-   [ClearVPN](https://setapp.com/apps/clearvpn)
