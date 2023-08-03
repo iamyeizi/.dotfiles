@@ -66,7 +66,23 @@ ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
+ln -fs ~/.dotfiles/apps_config/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
+```
+
+```zsh
+ln -fs ~/.dotfiles/apps_config/com.knollsoft.Hyperkey.plist ~/Library/Preferences/com.knollsoft.Hyperkey.plist
+```
+
+```zsh
+ln -fs ~/.dotfiles/apps_config/eu.exelban.Stats.plist ~/Library/Preferences/eu.exelban.Stats.plist
+```
+
+```zsh
+ln -fs ~/.dotfiles/apps_config/me.guillaumeb.MonitorControl.plist ~/Library/Preferences/me.guillaumeb.MonitorControl.plist
+```
+
+```zsh
+ln -fs ~/.dotfiles/apps_config/studio.fireball.OneSwitch-setapp.plist ~/Library/Preferences/studio.fireball.OneSwitch-setapp.plist
 ```
 
 Conda base config
