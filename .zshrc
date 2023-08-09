@@ -30,7 +30,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 
 #FUNCTIONAL ALIASES
 installed(){
-  sdk list $1 | grep installed
+	sdk list $1 | grep -e installed -e local
 }
 
 function git_checkout(){

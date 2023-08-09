@@ -66,10 +66,6 @@ ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/apps_config/com.amethyst.Amethyst.plist ~/Library/Preferences/com.amethyst.Amethyst.plist
-```
-
-```zsh
 ln -fs ~/.dotfiles/apps_config/com.knollsoft.Hyperkey.plist ~/Library/Preferences/com.knollsoft.Hyperkey.plist
 ```
 
