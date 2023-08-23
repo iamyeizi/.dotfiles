@@ -13,7 +13,6 @@ brew "tmux"
 brew "ranger"
 brew "bat"
 brew "fzf"
-brew "git-delta"
 
 cask "hyperkey"
 cask "miniconda"
