@@ -26,6 +26,9 @@ alias gs='git status'
 alias cat='bat --paging=never'
 alias top='bpytop'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias openpd="cd /Users/yeizi/Documents/Crack_Parallels && sudo ./Launch_Parallels.command"
+alias gck="git_checkout"
+
 #------------------------
 
 #FUNCTIONAL ALIASES
@@ -48,6 +51,7 @@ alias gco="git_checkout"
 
 #PATHS
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/yeizi/personal/py-tools:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -75,3 +79,10 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# bun completions
+[ -s "/Users/yeizi/.bun/_bun" ] && source "/Users/yeizi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
