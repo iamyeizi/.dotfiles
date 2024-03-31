@@ -1,7 +1,7 @@
 # dotfiles
 
--   [ ] It remains to make a script (`.sh`) to install everything at once.
--   Like [ThePrimeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles)
+- [ ] It remains to make a script (`.sh`) to install everything at once.
+- Like [ThePrimeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles)
 
 ---
 
@@ -50,7 +50,11 @@ ln -fs ~/.dotfiles/.zshrc ~/.zshrc
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -fs ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+```
+
+```zsh
+mkdir -p ~/.local/bin/ && ln -fs ~/.dotfiles/.local/bin/* ~/.local/bin/
 ```
 
 ```zsh
@@ -116,13 +120,14 @@ conda init "$(basename "${SHELL}")"
 ---
 
 ## Missing apps
--   [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
--   [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
--   Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
--   [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
--   [Bartender](https://setapp.com/apps/bartender)
--   [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
--   [One Switch](https://setapp.com/apps/one-switch)
--   [CleanShot X](https://setapp.com/apps/cleanshot)
--   [TouchRetouch](https://setapp.com/apps/touchretouch)
--   [ClearVPN](https://setapp.com/apps/clearvpn)
+
+- [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
+- [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
+- Parallels ([M1](https://haxmac.cc/?s=parallels), [M2](https://nmac.to/search/?q=parallels#gsc.tab=0&gsc.q=parallels&gsc.page=1))
+- [StandUp](https://apps.apple.com/ar/app/standup/id1439378680?l=en&mt=12)
+- [Bartender](https://setapp.com/apps/bartender)
+- [iBoysoft NTFS](https://setapp.com/apps/iboysoft-ntfs-for-mac)
+- [One Switch](https://setapp.com/apps/one-switch)
+- [CleanShot X](https://setapp.com/apps/cleanshot)
+- [TouchRetouch](https://setapp.com/apps/touchretouch)
+- [ClearVPN](https://setapp.com/apps/clearvpn)
