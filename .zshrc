@@ -34,10 +34,12 @@ alias nvf='nvim $(find . -type f -not -path "*node_modules*" -follow -print | fz
 alias nvd='nvim $(find . -type d -not -path "*node_modules*" -print | fzf --height 30%)'
 alias r='ranger'
 alias gs='git status'
+alias gd='git diff'
+alias gck="gitCheckout"
+alias cdot='commitDotFiles'
 alias top='htop'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias openpd="cd $HOME/Documents/Crack_Parallels && sudo ./Launch_Parallels.command"
-alias gck="git_checkout"
 alias up="brew upgrade && bun upgrade && omz update"
 alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/iamyeizi"
 alias lr='l | rg'
@@ -53,8 +55,6 @@ commitDotFiles() {
     git push origin main
     popd
 }
-
-alias cdot='commitDotFiles'
 
 t(){
 	tree -a -L $1
@@ -73,8 +73,6 @@ function gitCheckout(){
 	fi
 };
 
-alias gco="gitCheckout"
-
 #------------------------
 
  . /opt/homebrew/etc/profile.d/z.sh
@@ -89,7 +87,7 @@ export PATH="/sbin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/opt/homebrew:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/scripts:$PATH"
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

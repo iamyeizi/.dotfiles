@@ -7,10 +7,10 @@
 
 ## Steps to bootstrap a new Mac
 
-### Make dev, personal and work directories
+### Make dev and work directories
 
 ```zsh
-cd $HOME && mkdir -p personal work
+cd $HOME && mkdir -p d work
 ```
 
 ### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
@@ -46,27 +46,27 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 There are better and less manual ways to do this. Investigate install scripts and bootstrapping tools.
 
 ```zsh
-ln -fs ~/.dotfiles/.zshrc ~/.zshrc
+ln -fs ~/.dotfiles/.zshrc ~/
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+ln -fs $DOTFILES/tmux/.tmux.conf $DOTFILES/tmux/.tmux-cht-command $DOTFILES/tmux/.tmux-cht-languages ~/
 ```
 
 ```zsh
-mkdir -p ~/.local/bin/ && ln -fs ~/.dotfiles/.local/bin/* ~/.local/bin/
+mkdir -p ~/.local/scripts/ && ln -fs $DOTFILES/.local/scripts/* ~/.local/scripts/
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/.vimrc ~/.vimrc
+ln -fs $DOTFILES/.vimrc ~/
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/.ideavimrc ~/.ideavimrc
+ln -fs $DOTFILES/.ideavimrc ~/
 ```
 
 ```zsh
-ln -fs ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -fs $DOTFILES/.gitconfig ~/
 ```
 
 ```zsh
@@ -88,7 +88,7 @@ ln -fs ~/.dotfiles/apps_config/studio.fireball.OneSwitch-setapp.plist ~/Library/
 Conda base config
 
 ```zsh
-ln -fs ~/.dotfiles/.condarc ~/.condarc
+ln -fs $DOTFILES/.condarc ~/
 ```
 
 ### 6. Install Homebrew, followed by the software listed in the Brewfile.
@@ -102,13 +102,13 @@ These could also be in an install script. Install Homebrew
 Then pass in the Brewfile location...
 
 ```zsh
-brew bundle --file ~/.dotfiles/Brewfile
+brew bundle --file $DOTFILES/Brewfile
 ```
 
 ...or move to the directory first.
 
 ```zsh
-cd ~/.dotfiles && brew bundle
+cd $DOTFILES && brew bundle
 ```
 
 ### 7. Setup Miniconda
