@@ -39,7 +39,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias openpd="cd $HOME/Documents/Crack_Parallels && sudo ./Launch_Parallels.command"
 alias gck="git_checkout"
 alias up="brew upgrade && bun upgrade && omz update"
-alias obs="cd /Users/y/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/iamyeizi"
+alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/iamyeizi"
 alias lr='l | rg'
 alias wf='wifi-password'
 #------------------------
