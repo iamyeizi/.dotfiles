@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+#addToPathFront /home/
+addToPath $HOME/.local/scripts
+addToPath $HOME/.cargo/bin
+addToPath /opt/homebrew

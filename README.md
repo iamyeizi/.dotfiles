@@ -1,27 +1,12 @@
-# dotfiles
+# .dotfiles
 
-- [ ] It remains to make a script (`.sh`) to install everything at once.
-- Like [ThePrimeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles)
+[ ] Try to setup ansible
 
----
+## Steps to setup a new Mac
 
-## Steps to bootstrap a new Mac
+### 1. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
-### Make dev and work directories
-
-```zsh
-cd $HOME && mkdir -p d work
-```
-
-### 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
-
-```zsh
-xcode-select --install
-```
-
-### 2. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-
-### 3. Clone repo into new hidden directory.
+### 2. Clone repo into new hidden directory.
 
 Use **SSH** (if set up)...
 
@@ -35,91 +20,9 @@ git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
 git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
 ```
 
-### 4. Install **_oh-my-zsh_** now
+### 3. Run the `./run` file
 
-```zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-### 5. Create symlinks in the Home directory to the real files in the repo.
-
-There are better and less manual ways to do this. Investigate install scripts and bootstrapping tools.
-
-```zsh
-ln -fs ~/.dotfiles/.zshrc ~/
-```
-
-```zsh
-ln -fs $DOTFILES/tmux/.tmux.conf $DOTFILES/tmux/.tmux-cht-command $DOTFILES/tmux/.tmux-cht-languages ~/
-```
-
-```zsh
-mkdir -p ~/.local/scripts/ && ln -fs $DOTFILES/.local/scripts/* ~/.local/scripts/
-```
-
-```zsh
-ln -fs $DOTFILES/.vimrc ~/
-```
-
-```zsh
-ln -fs $DOTFILES/.ideavimrc ~/
-```
-
-```zsh
-ln -fs $DOTFILES/.gitconfig ~/
-```
-
-```zsh
-ln -fs ~/.dotfiles/apps_config/com.knollsoft.Hyperkey.plist ~/Library/Preferences/com.knollsoft.Hyperkey.plist
-```
-
-```zsh
-ln -fs ~/.dotfiles/apps_config/eu.exelban.Stats.plist ~/Library/Preferences/eu.exelban.Stats.plist
-```
-
-```zsh
-ln -fs ~/.dotfiles/apps_config/me.guillaumeb.MonitorControl.plist ~/Library/Preferences/me.guillaumeb.MonitorControl.plist
-```
-
-```zsh
-ln -fs ~/.dotfiles/apps_config/studio.fireball.OneSwitch-setapp.plist ~/Library/Preferences/studio.fireball.OneSwitch-setapp.plist
-```
-
-Conda base config
-
-```zsh
-ln -fs $DOTFILES/.condarc ~/
-```
-
-### 6. Install Homebrew, followed by the software listed in the Brewfile.
-
-These could also be in an install script. Install Homebrew
-
-```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Then pass in the Brewfile location...
-
-```zsh
-brew bundle --file $DOTFILES/Brewfile
-```
-
-...or move to the directory first.
-
-```zsh
-cd $DOTFILES && brew bundle
-```
-
-### 7. Setup Miniconda
-
-```zsh
-conda init "$(basename "${SHELL}")"
-```
-
----
-
-## Missing apps
+### 4. Other apps
 
 - [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
 - [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)

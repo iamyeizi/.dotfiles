@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+echo "\n• Symbolic linking..."
+pushd $DOTFILES
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+    echo "stow $folder"
+    stow -D $folder
+    stow $folder
+done
+popd
+
+# echo "\n• Initializing conda..."
+# conda init "$(basename "${SHELL}")"
+
+echo "\nInstallation complete."

@@ -1,3 +1,34 @@
+#!/usr/bin/env zsh
+
+echo "\n• Creating directories /d and /work directories..."
+mkdir -p $HOME/d $HOME/work
+
+echo "\n• Installing Xcode command line tools..."
+xcode-select --install
+
+echo "\n• Installing Oh My Zsh..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "\n• Symbolic linking..."
+pushd $DOTFILES
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+    echo "stow $folder"
+    stow -D $folder
+    stow $folder
+done
+popd
+
+echo "\n• Installing Homebrew..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo "\n• Installing packages using Brewfile..."
+brew bundle --file $DOTFILES/Brewfile
+
+# echo "\n• Initializing conda..."
+# conda init "$(basename "${SHELL}")"
+
+echo "\n• Reducing animations on macOS..."
 defaults write -g NSScrollViewRubberbanding -int 0
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 defaults write -g NSScrollAnimationEnabled -bool false
@@ -19,3 +50,5 @@ defaults write com.apple.Mail DisableReplyAnimations -bool true
 defaults write NSGlobalDomain NSWindowResizeTime .001
 defaults write com.apple.dock expose-animation-duration -int 0; killall Dock
 defaults write com.apple.dock expose-animation-duration -float 0.1; killall Dock
+
+echo "\nInstallation complete."

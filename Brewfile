@@ -15,6 +15,7 @@ brew "mas"
 brew "speedtest-cli"
 brew "mailsy"
 brew "wifi-password"
+brew "stow"
 
 cask "miniconda"
 cask "blackhole-2ch"
