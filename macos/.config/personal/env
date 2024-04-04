@@ -37,6 +37,4 @@ commitDotFiles() {
     git commit -m "automatic commit"
     git push origin main
     popd
-
-    source $DOTFILES/run
 }
