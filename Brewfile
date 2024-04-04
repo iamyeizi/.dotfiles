@@ -24,7 +24,7 @@ brew "neovim"
 brew "fd"
 brew "git"
 
-
+cask "topnotch"
 cask "hyperkey"
 cask "slack"
 cask "spaceid"
