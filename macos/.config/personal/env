@@ -38,6 +38,6 @@ commitDotFiles() {
     git push origin main
     popd
 
-    ./$DOTFILES/.run
+    . /$DOTFILES/run
 }
 
