@@ -144,31 +144,23 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
             })
         end
     }
-}, {
-    -- 'blazkowolf/gruber-darker.nvim',
-    -- opts = {
-    --     bold = true,
-    --     invert = {
-    --         signs = false,
-    --         tabline = false,
-    --         visual = false
-    --     },
-    --     italic = {
-    --         strings = true,
-    --         comments = true,
-    --         operators = false,
-    --         folds = true
-    --     },
-    --     undercurl = true,
-    --     underline = true
-    -- },
-     'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-         vim.cmd.colorscheme 'onedark'
-        -- vim.cmd.colorscheme("gruber-darker")
-    end
-}, {
+},
+   {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        config = function()
+            require('rose-pine').setup({
+                disable_background = true,
+                styles = {
+                    italic = false,
+                },
+            })
+
+            vim.cmd("colorscheme rose-pine")
+
+        end
+    },
+ {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
