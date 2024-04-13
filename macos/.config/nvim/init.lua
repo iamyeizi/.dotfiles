@@ -173,6 +173,9 @@ require('lazy').setup({                      -- NOTE: First, some plugins that d
     }
   },
   {
+    "ThePrimeagen/harpoon"
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     config = function()
@@ -384,7 +387,8 @@ require('telescope').setup {
         ['<C-u>'] = false,
         ['<C-d>'] = false
       }
-    }
+    },
+    path_display = { 'absolute' }
   }
 }
 
