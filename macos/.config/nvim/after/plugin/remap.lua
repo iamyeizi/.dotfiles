@@ -2,9 +2,12 @@
 --
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Search Git Files" })
--- vim.keymap.set("n", "<leader>ps", function()
--- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
--- end)
+vim.keymap.set("n", "<leader>ps", function()
+	builtin.grep_string({ search = vim.fn.input("Grep > "), find_command = { "rg", "--hidden", "-g" } })
+end)
+vim.keymap.set("n", "<leader>sf", function()
+	builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "!.git" } })
+end)
 
 -- Invoke Netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
