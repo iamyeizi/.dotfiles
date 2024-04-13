@@ -3,9 +3,9 @@ set mouse=a
 set tabstop=4
 set shiftwidth=4
 set ai
-"set number
+" set number
 set hlsearch
-"set ruler
+" set ruler
 highlight Comment ctermfg=green
 syntax on
 set clipboard=unnamed

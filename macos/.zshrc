@@ -29,8 +29,8 @@ bindkey -s ^f "tmux-sessionizer\n"
  . /opt/homebrew/etc/profile.d/z.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/y/.sdkman"
+[[ -s "/Users/y/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/y/.sdkman/bin/sdkman-init.sh"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
