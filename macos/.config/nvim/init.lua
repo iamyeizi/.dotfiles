@@ -684,6 +684,13 @@ require("lazy").setup({
 			end)
 		end,
 	},
+	{
+		"mbbill/undotree",
+
+		config = function()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+		end,
+	},
 	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
