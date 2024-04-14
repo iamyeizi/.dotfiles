@@ -5,7 +5,7 @@ vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Search Git Files" })
 vim.keymap.set("n", "<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > "), find_command = { "rg", "--hidden", "-g" } })
 end)
-vim.keymap.set("n", "<leader>sf", function()
+vim.keymap.set("n", "<leader>pf", function()
 	builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "!.git" } })
 end)
 
@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- Move current line or block one line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Move current line or block two line up
-vim.keymap.set("v", "K", ":m '<-1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Page down and center screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -41,3 +41,33 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- Joins the current line with the line below it,
 -- while preserving the cursor position using marks
 vim.keymap.set("n", "J", "mzJz")
+
+-- Center screen while finding highlight
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Delete without save prev string
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+-- Use SEG to rename all ocurrences of current word
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Clean Quickfix
+vim.keymap.set("n", "Qc", "<cmd>cexpr []<CR>")
+
+-- Toggle Quickfix
+vim.keymap.set("n", "q", function()
+	local qf_exists = false
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win["quickfix"] == 1 then
+			qf_exists = true
+		end
+	end
+	if qf_exists == true then
+		vim.cmd("cclose")
+		return
+	end
+	if not vim.tbl_isempty(vim.fn.getqflist()) then
+		vim.cmd("copen")
+	end
+end)

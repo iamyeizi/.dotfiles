@@ -13,10 +13,10 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = false
+vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -43,11 +43,11 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+-- vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 -- vim.opt.splitright = true
@@ -72,14 +72,14 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -285,13 +285,13 @@ require("lazy").setup({
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+			-- vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Search [F]iles" })
+			-- vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+			vim.keymap.set("n", "<leader>pw", builtin.grep_string, { desc = "Search current Word" })
+			-- vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+			-- vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+			-- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+			-- vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
@@ -380,31 +380,31 @@ require("lazy").setup({
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					-- map("gD", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
 					-- Find references for the word under your cursor.
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					-- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 					-- Jump to the implementation of the word under your cursor.
 					--  Useful when your language has ways of declaring types without an actual implementation.
-					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					-- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
 					-- Jump to the type of the word under your cursor.
 					--  Useful when you're not sure what type a variable is and you want to see
 					--  the definition of its *type*, not where it was *defined*.
-					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					-- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
 					-- Fuzzy find all the symbols in your current document.
 					--  Symbols are things like variables, functions, types, etc.
-					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					-- map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 
 					-- Fuzzy find all the symbols in your current workspace.
 					--  Similar to document symbols, except searches over your entire project.
-					map(
-						"<leader>ws",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
-					)
+					-- map(
+					-- 	"<leader>ws",
+					-- 	require("telescope.builtin").lsp_dynamic_workspace_symbols,
+					-- 	"[W]orkspace [S]ymbols"
+					-- )
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
@@ -417,29 +417,42 @@ require("lazy").setup({
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap.
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
-					map("<C-h>", vim.lsp.buf.signature_help, "Signature Documentation")
+
+					-- Go to definition
+					map("<leader>gd", vim.lsp.buf.definition, "Go to Definition")
+
+					-- References
+					map("<leader>rr", vim.lsp.buf.references, "Go to References")
+
+					-- References
+					map("<leader>ws", vim.lsp.buf.workspace_symbol, "Go to Workspace Symbol")
+
+					local ymap = function(keys, func, desc)
+						vim.keymap.set("i", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
+					ymap("<C-h>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					-- map("gdc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
 					--    See `:help CursorHold` for information about when this is executed
 					--
 					-- When you move your cursor, the highlights will be cleared (the second autocommand).
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.documentHighlightProvider then
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.document_highlight,
-						})
-
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.clear_references,
-						})
-					end
+					-- local client = vim.lsp.get_client_by_id(event.data.client_id)
+					-- if client and client.server_capabilities.documentHighlightProvider then
+					-- 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+					-- 		buffer = event.buf,
+					-- 		callback = vim.lsp.buf.document_highlight,
+					-- 	})
+					--
+					-- 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+					-- 		buffer = event.buf,
+					-- 		callback = vim.lsp.buf.clear_references,
+					-- 	})
+					-- end
 				end,
 			})
 
@@ -639,12 +652,12 @@ require("lazy").setup({
 					--
 					-- <c-l> will move you to the right of each of the expansion locations.
 					-- <c-h> is similar, except moving you backwards.
-					["<C-l>"] = cmp.mapping(function()
+					["<C-s>;"] = cmp.mapping(function()
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
 						end
 					end, { "i", "s" }),
-					["<C-h>"] = cmp.mapping(function()
+					["<C-s>,"] = cmp.mapping(function()
 						if luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
 						end
@@ -671,7 +684,7 @@ require("lazy").setup({
 				icons = true,
 			})
 
-			vim.keymap.set("n", "<leader>tt", function()
+			vim.keymap.set("n", "tr", function()
 				require("trouble").toggle()
 			end)
 
