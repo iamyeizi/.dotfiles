@@ -50,7 +50,7 @@ vim.opt.updatetime = 50
 -- vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
--- vim.opt.splitright = true
+vim.opt.splitright = true
 -- vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
@@ -265,6 +265,7 @@ require("lazy").setup({
 
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
+
 			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
@@ -275,6 +276,16 @@ require("lazy").setup({
 							-- ['<c-enter>'] = 'to_fuzzy_refine',
 							["<C-d>d"] = require("telescope.actions").delete_buffer,
 						},
+					},
+					vimgrep_arguments = {
+						"rg",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"--hidden",
+						"--glob=!.git/",
 					},
 				},
 				-- pickers = {}
