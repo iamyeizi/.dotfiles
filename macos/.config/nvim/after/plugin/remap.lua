@@ -3,7 +3,9 @@
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Search Git Files" })
 vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep > "), find_command = { "rg", "--hidden", "-g" } })
+	builtin.grep_string({
+		search = vim.fn.input("Grep > "),
+	})
 end)
 vim.keymap.set("n", "<leader>pf", function()
 	builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "!.git" } })
@@ -71,3 +73,16 @@ vim.keymap.set("n", "q", function()
 		vim.cmd("copen")
 	end
 end)
+
+-- Toggle Diagnostics
+vim.g.diagnostics_visible = true
+function _G.toggle_diagnostics()
+	if vim.g.diagnostics_visible then
+		vim.g.diagnostics_visible = false
+		vim.diagnostic.disable()
+	else
+		vim.g.diagnostics_visible = true
+		vim.diagnostic.enable()
+	end
+end
+vim.keymap.set("n", "<leader>t", ":call v:lua.toggle_diagnostics()<CR>", { silent = true, noremap = true })
