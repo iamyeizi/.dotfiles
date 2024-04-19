@@ -1,0 +1,9 @@
+[user]
+	name = iamyeizi
+	email = 37552350+iamyeizi@users.noreply.github.com
+[core]
+	editor = nano
+[merge]
+	conflictStyle = diff3
+[init]
+	defaultBranch = main

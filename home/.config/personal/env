@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+export STOW_FOLDERS="bin,home,tmux"
+
+t(){
+        tree -a -L $1
+}
+
+installed(){
+        sdk list $1 | grep -e installed -e local
+}
+
+ gitCheckout(){
+	if [ $# -eq 0 ]
+	then
+		git checkout $(git branch | fzf --height 20%)
+	else
+		git checkout $@
+	fi
+}
+
+addToPath() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$PATH:$1
+    fi
+}
+
+addToPathFront() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$1:$PATH
+    fi
+}
+
+commitDotFiles() {
+    pushd $DOTFILES
+    git add .
+    git commit -m "automatic commit from hell"
+    git push origin main
+    popd
+}
