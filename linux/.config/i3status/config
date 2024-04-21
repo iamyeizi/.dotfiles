@@ -35,7 +35,7 @@ ethernet _first_ {
 }
 
 battery all {
-        format = "%status %percentage %remainingh"
+        format = "%status%percentage %remainingh"
 	integer_battery_capacity = true
 	format_down = "No battery"
 	status_chr = "⚡"
@@ -49,26 +49,29 @@ battery all {
 }
 
 disk "/" {
-        format = "DISK: %used"
+        format = "🖴: %used"
 }
 
 memory {
-        format = "MEM: %used"
+	format = "RAM %percentage_used (%used)"
+	threshold_degraded = 10%
+	threshold_critical = 5%
+	format_degraded = "RAM LOW: %free"
 }
 
 cpu_usage {
-	format = "CPU: %usage"
+	format = "CPU %usage"
 }
 
 cpu_temperature 0 {
-	format = "T: %degrees °C"
+	format = "%degrees °C"
 	max_threshold = 75
 	format_above_threshold = "Warning! T above threshold: %degrees °C"
 }
 
 volume master {
-	format = "♪: %volume"
-	format_muted = "♪: Muted"
+	format = "%volume 🕪 "
+	format_muted = "Muted 🕨"
 	device = "pulse:alsa_output.pci-0000_00_1b.0.analog-stereo"
 }
 

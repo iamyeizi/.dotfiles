@@ -4,10 +4,8 @@
 
 # Check OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "--> macOS detected"
     STOW_FOLDERS="bin,home,tmux"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "--> Linux detected"
     STOW_FOLDERS="bin,home,tmux,linux"
 else
     echo " ~ Unsupported operating system ~"
@@ -22,7 +20,7 @@ installed(){
         sdk list $1 | grep -e installed -e local
 }
 
- gitCheckout(){
+gitCheckout(){
 	if [ $# -eq 0 ]
 	then
 		git checkout $(git branch | fzf --height 20%)

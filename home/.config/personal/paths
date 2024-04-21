@@ -3,4 +3,11 @@
 #addToPathFront /home/
 addToPath $HOME/.local/scripts
 addToPath $HOME/.cargo/bin
-addToPath /opt/homebrew
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	addToPath /opt/homebrew
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	addToPath $HOME/.screenlayout
+fi
