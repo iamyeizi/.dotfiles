@@ -29,6 +29,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey -s ^f "tmux-sessionizer\n"
 
  . /opt/homebrew/etc/profile.d/z.sh
+. $HOME/z/z.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/y/.sdkman"
