@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 vim.opt.guicursor = ""
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 vim.opt.number = true
 vim.opt.relativenumber = true

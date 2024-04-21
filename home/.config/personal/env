@@ -1,6 +1,18 @@
 #!/usr/bin/env zsh
 
-export STOW_FOLDERS="bin,home,tmux"
+#export STOW_FOLDERS="bin,home,tmux"
+
+# Check OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "--> macOS detected"
+    STOW_FOLDERS="bin,home,tmux"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "--> Linux detected"
+    STOW_FOLDERS="bin,home,tmux,linux"
+else
+    echo " ~ Unsupported operating system ~"
+fi
+
 
 t(){
         tree -a -L $1
