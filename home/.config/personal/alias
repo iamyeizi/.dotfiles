@@ -29,4 +29,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias up="brew upgrade && bun upgrade && omz update"
 else
     alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && omz update -y"
+    alias ins="sudo apt install -y"
 fi

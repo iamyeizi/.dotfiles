@@ -6,8 +6,7 @@ else
 	if [[ `hostname` == "mbpro" ]]; then
 	        selected=$(find ~/.screenlayout/mbpro/ -type f | fzf --height 20%)
 	elif [[ `hostname` == "fatty" ]]; then
-        	echo "WIP fatty ~~"
-		#selected=$(find ~/.screenlayout/fatty/ -type f | fzf --height 20%)
+		selected=$(find ~/.screenlayout/fatty/ -type f | fzf --height 20%)
 	else
         	echo "Notebook unsupported!"
 	fi
