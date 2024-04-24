@@ -1,14 +1,12 @@
 #!/usr/bin/env zsh
 
-#export STOW_FOLDERS="bin,home,tmux"
-
 # Check OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    STOW_FOLDERS="bin,home,tmux"
+    export STOW_FOLDERS="home"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    STOW_FOLDERS="bin,home,tmux,linux"
+    export STOW_FOLDERS="home,linux"
 else
-    echo " ~ Unsupported operating system ~"
+    echo "==> Unsupported operating system"
 fi
 
 
