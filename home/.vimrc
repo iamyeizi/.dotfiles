@@ -8,7 +8,7 @@ set hlsearch
 set ruler
 syntax on
 set clipboard=unnamed
-set relativenumber
+" set relativenumber
 set incsearch
 highlight Comment ctermfg=green
 
