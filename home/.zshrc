@@ -74,3 +74,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# fnm
+export PATH="/home/y/.local/share/fnm:$PATH"
+eval "`fnm env`"

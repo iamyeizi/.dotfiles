@@ -53,10 +53,9 @@ disk "/" {
 }
 
 memory {
-	format = "RAM %percentage_used (%used)"
-	threshold_degraded = 10%
-	threshold_critical = 5%
-	format_degraded = "RAM LOW: %free"
+	format = "RAM %used / %total"
+	threshold_degraded = "30%"
+	threshold_critical = "10%"
 }
 
 cpu_usage {
