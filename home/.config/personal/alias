@@ -23,7 +23,6 @@ alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/iamye
 alias lr='l | rg'
 alias wf='wifi-password'
 alias vim='nvim'
-alias vi='vim'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias up="brew upgrade && bun upgrade && omz update"

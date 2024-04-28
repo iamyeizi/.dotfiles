@@ -3,14 +3,14 @@ set mouse=a
 set tabstop=4
 set shiftwidth=4
 set ai
-" set number
+set number
 set hlsearch
-" set ruler
-highlight Comment ctermfg=green
+set ruler
 syntax on
 set clipboard=unnamed
-"set relativenumber
+set relativenumber
 set incsearch
+highlight Comment ctermfg=green
 
 " %F(Full file path)
 " %m(Shows + if modified - if not modifiable)
@@ -26,7 +26,7 @@ set incsearch
 set statusline=%F%m%r%<\ %=%l,%v\ [%L]\ %p%%
 
 " Change the highlighting so it stands out
-" hi statusline ctermbg=white ctermfg=black
+hi statusline ctermbg=81 ctermfg=235
 
 " Make sure it always shows
 set laststatus=2
