@@ -1,6 +1,7 @@
 # NO FRESH
 
 export ZSH=$HOME/.oh-my-zsh
+ZSH_CUSTOM=$HOME/.config/zsh/custom
 
 ZSH_THEME="robbyrussell"
 #ENABLE_CORRECTION="true"
