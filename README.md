@@ -1,12 +1,12 @@
 # .dotfiles
 
-[ ] Try to setup ansible
+- [ ] Try to setup ansible
 
 ## Steps to setup a new Mac
 
-### 1. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+### [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add to my GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
-### 2. Clone repo into new hidden directory.
+### Clone repo into new hidden directory.
 
 Use **SSH** (if set up)...
 
@@ -20,9 +20,15 @@ git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
 git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
 ```
 
-### 3. Run the `./run` file
+### Link with `./run` or `./linus`
 
-### 4. Other apps
+### Submodules
+
+```zsh
+git submodule update --init --recursive
+```
+
+### Other apps
 
 - [Authy from iPad](https://apps.apple.com/ar/app/twilio-authy/id494168017?l=en)
 - [CapCut](https://apps.apple.com/ar/app/capcut-video-editor/id1500855883?l=en)
