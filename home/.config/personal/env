@@ -14,8 +14,8 @@ t(){
         tree -a -L $1
 }
 
-installed(){
-        sdk list $1 | grep -e installed -e local
+sdkls(){
+        sdk ls $1 | rg installed
 }
 
 gitCheckout(){

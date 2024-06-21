@@ -3,6 +3,7 @@
 #addToPathFront /home/
 addToPath $HOME/.local/scripts
 addToPath $HOME/.cargo/bin
+addToPath /usr/local/mysql/bin
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	addToPath /opt/homebrew

@@ -19,8 +19,8 @@ done
 plugins=(
 	git
 	zsh-autosuggestions
-	#zsh-syntax-highlighting
 	zsh-completions
+	#zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -30,12 +30,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	bindkey -s '^[S' "screen_setup\n"
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	. /opt/homebrew/etc/profile.d/z.sh
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	. $HOME/z/z.sh
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
