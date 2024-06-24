@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "     [2] i3"
     echo "     [0] Skip..."
     echo ""
-    read -p " Which WM?" res
+    read -p " Which WM?  " res
     if [[ $res == "1" ]];then
         echo ""
         sudo apt install -y sway
