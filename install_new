@@ -41,25 +41,13 @@ git submodule update --init --recursive
 
 echo " • Symbolic linking..."
 pushd $DOTFILES
-# for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-# do
-#     echo "stow $folder"
-#     stow -D $folder
-#     stow $folder
-# done
-# popd
-
-# testing
-IFS=',' read -ra FOLDERS <<< "$STOW_FOLDERS"
-for folder in "${FOLDERS[@]}"
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     echo "stow $folder"
-    stow -D "$folder"
-    stow "$folder"
+    stow -D $folder
+    stow $folder
 done
 popd
-
-#########
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo " • Installing Xcode command line tools..."
@@ -68,7 +56,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo " • Installing useful apps..."
-    ins zsh ripgrep unzip htop dconf-editor fzf curl wget stow flatpak git tldr tree tmux jq sqlite
+    sudo apt install -y zsh ripgrep unzip htop dconf-editor fzf curl wget stow flatpak git tldr tree tmux jq sqlite
     curl -fsSL https://get.pnpm.io/install.sh | sh -
     curl -fsSL https://fnm.vercel.app/install | bash
 fi
