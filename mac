@@ -11,7 +11,7 @@ fi
 echo "• Is this a new Mac? (Y/n) •"
 read -r res
 if [[ $res == "Y" || $res == "y" ]]; then
-    # STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install_new
+    STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install_new
 else
     STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
 fi

@@ -1,6 +1,15 @@
 alias dots="dotInstall && source ~/.zshrc"
-alias dotInstall="$DOTFILES/run"
-alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias dotInstall="$DOTFILES/mac"
+else
+    alias dotInstall="$DOTFILES/linus"
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
+fi
+
 alias ta='tmux attach'
 alias nvm='fnm'
 alias la='ls -AF'
@@ -9,19 +18,18 @@ alias zr='source $HOME/.zshrc'
 alias py='python3'
 alias d='cd $HOME/d'
 alias wk='cd $HOME/work'
-alias fh='cd $(find . -type d -not -path "*node_modules*" -print | fzf --height 50%)'
-alias fa='cd $(find $HOME -type d -not -path "*node_modules*" -print | fzf --height 50%)'
+alias fdh='cd $(find . -type d -not -path "*node_modules*" -print | fzf --height 50%)'
 alias r='ranger'
 alias gs='git status'
+alias gr='gir restore'
+alias gc='git commit -m'
+alias ga='git add'
 alias gd='git diff'
+alias gl='git log'
 alias gck="gitCheckout"
 alias cdot='commitDotFiles'
 alias top='htop'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias openpd="cd $HOME/Documents/Crack_Parallels && sudo ./Launch_Parallels.command"
-alias obs="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/iamyeizi"
 alias lr='l | rg'
-alias wf='wifi-password'
 alias vim='nvim'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -29,4 +37,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && omz update -y"
     alias ins="sudo apt install -y"
+    alias purge="sudo apt purge -y"
+    alias isins="sudo apt list --installed | rg"
+    alias armv="sudo apt autoremove -y"
 fi

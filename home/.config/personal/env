@@ -1,10 +1,15 @@
 #!/usr/bin/env zsh
 
-# Check OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export STOW_FOLDERS="home"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export STOW_FOLDERS="home,linux"
+    if [[ "$XDG_CURRENT_DESKTOP" == "sway"* ]]; then
+        export STOW_FOLDERS=$STOW_FOLDERS",linux/sway"
+    fi
+    if [[ "$XDG_CURRENT_DESKTOP" == "i3"* ]]; then
+        export STOW_FOLDERS=$STOW_FOLDERS",linux/i3"
+    fi
 else
     echo "==> Unsupported operating system"
 fi

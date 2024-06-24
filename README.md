@@ -20,7 +20,7 @@ git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
 git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
 ```
 
-### Link with `./run` or `./linus`
+### Install with `./mac` or `./linus`
 
 ### Submodules
 
