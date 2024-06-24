@@ -11,13 +11,13 @@
 Use **SSH** (if set up)...
 
 ```zsh
-git clone --branch main git@github.com:iamyeizi/dotfiles $HOME
+cd && git clone git@github.com:iamyeizi/.dotfiles
 ```
 
-...or use **HTTPS** and switch remotes later.
+...or use **HTTPS** and add remote url later.
 
 ```zsh
-git clone --branch main https://github.com/iamyeizi/.dotfiles.git $HOME
+cd && git clone https://github.com/iamyeizi/.dotfiles
 ```
 
 ### Install with `./mac` or `./linus`
