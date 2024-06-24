@@ -1,4 +1,18 @@
-#!/usr/bin/env zsh
+#!/bin/bash
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "\n• Installing requirements..."
+    echo ""
+    sudo apt install -y stow git
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "\n• Installing requirements..."
+    echo ""
+    echo "\n• Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install git stow
+fi
 
 echo "\n• Creating directories /d and /work directories..."
 mkdir -p $HOME/d $HOME/work
@@ -19,7 +33,7 @@ popd
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo ""
     read -p "  • Install Sway or i3wm? (S/i3): " res
-    if [[ $res == "S" | $res == "s" ]];then
+    if [[ $res == "S" || $res == "s" ]];then
         ins sway
     elif [[ $res == "i3" ]];then
         ins i3
@@ -54,13 +68,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "\n• Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
     echo "\n• Installing packages using Brewfile..."
     brew bundle --file $DOTFILES/Brewfile
 
-    echo "\n• Reducing animations on macOS..."
+    echo "\n• Reducing animations..."
     defaults write -g NSScrollViewRubberbanding -int 0
     defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
     defaults write -g NSScrollAnimationEnabled -bool false
