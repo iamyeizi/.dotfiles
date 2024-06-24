@@ -56,7 +56,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo " • Installing useful apps..."
-    sudo apt install -y zsh ripgrep unzip htop dconf-editor fzf curl wget stow flatpak git tldr tree tmux jq sqlite
+    sudo apt install -y zsh ripgrep unzip htop dconf-editor fzf curl wget stow flatpak git tldr tree tmux jq
     curl -fsSL https://get.pnpm.io/install.sh | sh -
     curl -fsSL https://fnm.vercel.app/install | bash
 fi
