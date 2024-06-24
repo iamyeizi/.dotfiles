@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "\n• Symbolic linking..."
+echo " • Symbolic linking..."
 pushd $DOTFILES
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
@@ -10,10 +10,10 @@ do
 done
 popd
 
-echo "\n• Downloading submodules..."
+echo " • Downloading submodules..."
 git submodule update --init --recursive
 
-# echo "\n• Initializing conda..."
+# echo " • Initializing conda..."
 # conda init "$(basename "${SHELL}")"
 
-echo "\nInstallation complete."
+echo "  Installation complete."

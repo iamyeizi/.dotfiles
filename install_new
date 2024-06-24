@@ -1,77 +1,95 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "\n• Installing requirements..."
+    echo " • Installing requirements..."
     echo ""
     sudo apt install -y stow git
-fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "\n• Installing requirements..."
     echo ""
-    echo "\n• Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install git stow
-fi
-
-echo "\n• Creating directories /d and /work directories..."
-mkdir -p $HOME/d $HOME/work
-
-echo "\n• Downloading submodules..."
-git submodule update --init --recursive
-
-echo "\n• Symbolic linking..."
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    echo "stow $folder"
-    stow -D $folder
-    stow $folder
-done
-popd
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo " • Installing WM..."
+    echo "     [1] Sway"
+    echo "     [2] i3"
+    echo "     [0] Skip..."
     echo ""
-    read -p "  • Install Sway or i3wm? (S/i3): " res
-    if [[ $res == "S" || $res == "s" ]];then
-        ins sway
-    elif [[ $res == "i3" ]];then
-        ins i3
+    read -p " Which WM?" res
+    if [[ $res == "1" ]];then
+        echo ""
+        sudo apt install -y sway
+    elif [[ $res == "2" ]];then
+        echo ""
+        sudo apt install -y i3
     else
+        echo ""
         echo "  Skipping WM Installer..."
     fi
     echo ""
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "\n• Installing Xcode command line tools..."
+    echo " • Installing requirements..."
+    echo ""
+    echo " • Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install git stow
+fi
+
+echo " • Creating directories /d and /work directories..."
+mkdir -p $HOME/d $HOME/work
+
+echo " • Downloading submodules..."
+git submodule update --init --recursive
+
+echo " • Symbolic linking..."
+pushd $DOTFILES
+# for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+# do
+#     echo "stow $folder"
+#     stow -D $folder
+#     stow $folder
+# done
+# popd
+
+# testing
+IFS=',' read -ra FOLDERS <<< "$STOW_FOLDERS"
+for folder in "${FOLDERS[@]}"
+do
+    echo "stow $folder"
+    stow -D "$folder"
+    stow "$folder"
+done
+popd
+
+#########
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo " • Installing Xcode command line tools..."
     xcode-select --install
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "\n• Installing useful apps..."
+    echo " • Installing useful apps..."
     ins zsh ripgrep unzip htop dconf-editor fzf curl wget stow flatpak git tldr tree tmux jq sqlite
     curl -fsSL https://get.pnpm.io/install.sh | sh -
     curl -fsSL https://fnm.vercel.app/install | bash
 fi
 
-echo "\n• Installing Oh My Zsh..."
+echo " • Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "\n• Installing SDKMAN!..."
+    echo " • Installing SDKMAN!..."
     curl -s "https://get.sdkman.io" | bash
 
-    echo "\n• Installing flatpak apps..."
+    echo " • Installing flatpak apps..."
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     flatpak install flathub md.obsidian.Obsidian
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "\n• Installing packages using Brewfile..."
+    echo " • Installing packages using Brewfile..."
     brew bundle --file $DOTFILES/Brewfile
 
-    echo "\n• Reducing animations..."
+    echo " • Reducing animations..."
     defaults write -g NSScrollViewRubberbanding -int 0
     defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
     defaults write -g NSScrollAnimationEnabled -bool false
@@ -95,8 +113,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write com.apple.dock expose-animation-duration -float 0.1; killall Dock
 fi
 
-# echo "\n• Initializing conda..."
+# echo " • Initializing conda..."
 # conda init "$(basename "${SHELL}")"
 
 
-echo "\nInstallation complete."
+echo "  Installation complete."
+echo ""
+echo "  Rebooting..." 
+sleep 3
+sudo reboot
