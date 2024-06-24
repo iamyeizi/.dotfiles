@@ -62,7 +62,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 echo " • Installing Oh My Zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo " • Installing SDKMAN!..."
