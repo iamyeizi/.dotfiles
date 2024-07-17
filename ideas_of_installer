@@ -1,0 +1,257 @@
+#!/usr/bin/env zsh
+
+# string formatters
+if [[ -t 1 ]]
+then
+  tty_escape() { printf "\033[%sm" "$1"; }
+else
+  tty_escape() { :; }
+fi
+tty_mkbold() { tty_escape "1;$1"; }
+tty_underline="$(tty_escape "4;39")"
+tty_blue="$(tty_mkbold 34)"
+tty_red="$(tty_mkbold 31)"
+tty_bold="$(tty_mkbold 39)"
+tty_reset="$(tty_escape 0)"
+
+shell_join() {
+  local arg
+  printf "%s" "$1"
+  shift
+  for arg in "$@"
+  do
+    printf " "
+    printf "%s" "${arg// /\ }"
+  done
+}
+
+chomp() {
+  printf "%s" "${1/"$'\n'"/}"
+}
+
+ohai() {
+  printf "${tty_blue}==>${tty_bold} %s${tty_reset}\n" "$(shell_join "$@")"
+}
+
+warn() {
+  printf "${tty_red}Warning${tty_reset}: %s\n" "$(chomp "$1")" >&2
+}
+
+#--------------------------------------------------------------
+
+symbolic_linking() {
+    echo "\n• Symbolic linking..."
+    pushd $DOTFILES
+    for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+    do
+        echo "stow $folder"
+        stow -D $folder
+        stow $folder
+    done
+    popd
+
+    # echo "\n• Initializing conda..."
+    # conda init "$(basename "${SHELL}")"
+}
+
+# Function to check if macOS system is fresh
+check_freshness() {
+    if [ ! -f "$HOME/.zshrc" ]; then
+        echo "macOS system appears to be fresh."
+    else
+        if grep -q "# NO FRESH" "$HOME/.zshrc"; then
+            echo "macOS system appears to be fresh."
+        else
+            echo "macOS system appears to have existing configurations."
+        fi
+    fi
+}
+
+# Call the function
+check_macos_freshness
+
+pc_type(){
+    echo "• Is this a New PC? (Y/n) •"
+    read -r res
+    if [[ $res == "Y" || $res == "y" ]]; then
+        # STOW_FOLDERS=$STOW_FOLDERS_LINUX DOTFILES=$DOTFILES $DOTFILES/install_new
+        STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES
+        symbolic_linking
+    else
+        # STOW_FOLDERS=$STOW_FOLDERS_LINUX DOTFILES=$DOTFILES $DOTFILES/install
+        STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES
+        symbolic_linking
+    fi
+}
+
+# Check OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "--> macOS detected"
+    if [[ -z $STOW_FOLDERS ]]; then
+        STOW_FOLDERS="bin,home,tmux"
+    fi
+    echo "\n • Installation complete!"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "--> Linux detected"
+    if [[ -z $STOW_FOLDERS ]]; then
+        STOW_FOLDERS="bin,home,tmux,linux"
+    fi
+    echo "\n • Installation complete!"
+else
+    echo " ~ Unsupported operating system ~"
+fi
+
+# -------------------------------------------------------------------------------
+
+# Function to install configurations even if not fresh
+install_anyway() {
+    read -p "The system doesn't appear to be fresh. Do you want to install configurations anyway? (y/n): " answer
+    case "$answer" in
+        [Yy]* ) install_configurations;;
+        * ) echo "Exiting without installation."; exit;;
+    esac
+}
+
+# Function to install configurations
+install_configurations() {
+    echo "Installing configurations..."
+    # Add your installation commands here
+}
+
+# Function to check if Linux system is fresh
+check_linux_freshness() {
+    if [ ! -f "$HOME/.zshrc" ]; then
+        echo "Linux system appears to be fresh."
+    else
+        if grep -q "# NO FRESH" "$HOME/.zshrc"; then
+            echo "Linux system appears to be fresh."
+            install_configurations
+        else
+            echo "Linux system appears to have existing configurations."
+            install_anyway
+        fi
+    fi
+}
+
+# Call the function
+check_linux_freshness
+
+# -------------------------------------------------------------------------------
+
+#!/bin/bash
+
+# Function to install configurations on macOS
+install_macos_configurations() {
+    echo "Installing configurations for macOS..."
+    # Add macOS specific installation commands here
+}
+
+# Function to install configurations on Linux
+install_linux_configurations() {
+    echo "Installing configurations for Linux..."
+    # Add Linux specific installation commands here
+}
+
+# Function to install configurations even if not fresh
+install_anyway() {
+    read -p "The system doesn't appear to be fresh. Do you want to install configurations anyway? (y/n): " answer
+    case "$answer" in
+        [Yy]* ) install_configurations;;
+        * ) echo "Exiting without installation."; exit;;
+    esac
+}
+
+# Function to check system freshness
+check_freshness() {
+    if [ ! -f "$HOME/.zshrc" ]; then
+        echo "System appears to be fresh."
+    else
+        if grep -q "# NO FRESH" "$HOME/.zshrc"; then
+            echo "System appears to be fresh."
+            install_configurations
+        else
+            echo "System appears to have existing configurations."
+            install_anyway
+        fi
+    fi
+}
+
+# -------------------------------------------------------------------------------
+
+
+my_function() {
+    case "$1" in
+        argument1)
+            echo "Processing argument1"
+            # Add your code for handling argument1 here
+            ;;
+        argument2)
+            echo "Processing argument2"
+            # Add your code for handling argument2 here
+            ;;
+        *)
+            echo "Unknown argument: $1"
+            # Add code to handle unknown arguments here
+            ;;
+    esac
+}
+
+
+freshness() {
+    if [ ! -f "$HOME/.zshrc" ]; then
+        install_fresh $1
+    else
+        if grep -q "# NO FRESH" "$HOME/.zshrc"; then
+            echo "macOS system appears to be fresh."
+        else
+            echo "macOS system appears to have existing configurations."
+        fi
+    fi
+}
+
+main() {
+
+    if [[ -z $DOTFILES ]]; then
+        DOTFILES=$HOME/.dotfiles
+    fi
+
+    ohai "Creating directories /d and /work directories..."
+    mkdir -p $HOME/d $HOME/work
+
+    cd $HOME
+
+
+    case "$(uname -s)" in
+        Linux*)
+
+            ohai "Detected Linux system."
+
+            freshness "linux"
+
+            sudo apt update
+            sudo apt install -y software-properties-common
+            sudo apt install -y ripgrep htop fzf jq tmux tree sqlite3 fd-find git tldr stow
+            git clone https://github.com/iamyeizi/.dotfiles/
+
+            ;;
+        Darwin*)
+
+            ohai "Detected macOS system."
+
+            freshness "darwin"
+
+            ohai "Installing Xcode command line tools..."
+            xcode-select --install
+
+            ohai "Cloning DOTFILES..."
+            git clone https://github.com/iamyeizi/.dotfiles/
+
+            ;;
+        *)
+            warn "Unsupported operating system."
+            ;;
+    esac
+}
+
+# Call the main function
+main
