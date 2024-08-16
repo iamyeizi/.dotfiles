@@ -38,9 +38,9 @@ alias vim='nvim'
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias up="brew upgrade && bun upgrade && omz update"
 else
-    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && omz update -y"
+    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && flatpak update -y && omz update -y && sudo apt autoremove -y"
     alias ins="sudo apt install -y"
     alias purge="sudo apt purge -y"
-    alias isins="sudo apt list --installed | rg"
+    alias als="sudo apt list --installed | rg"
     alias armv="sudo apt autoremove -y"
 fi

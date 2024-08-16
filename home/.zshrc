@@ -71,3 +71,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
