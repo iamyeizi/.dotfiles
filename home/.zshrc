@@ -11,8 +11,12 @@ export DOTFILES=$HOME/.dotfiles
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME=$HOME/.config
 
+source $ZSH/oh-my-zsh.sh
+
 PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env
+source $PERSONAL/alias
+
 for i in `find -L $PERSONAL`; do
     source $i
 done
@@ -23,8 +27,6 @@ plugins=(
 	zsh-completions
 	#zsh-syntax-highlighting
 )
-
-source $ZSH/oh-my-zsh.sh
 
 bindkey -s ^f "tmux-sessionizer\n"
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 alias dots="dotInstall && source ~/.zshrc"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
