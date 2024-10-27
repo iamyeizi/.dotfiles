@@ -15,7 +15,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom PROMPT (robbyrussell based)
 # .oh-my-zsh/themes/robbyrussell.zsh-theme
-PROMPT="%(?:%{$fg_bold[white]%}%1{✳︎%} :%{$fg_bold[red]%}%1{✳︎%} ) %{$fg[white]%}%c%{$reset_color%}"
+PROMPT="%(?:%{$fg_bold[white]%}%1{✳︎%}:%{$fg_bold[red]%}%1{✳︎%}) %{$fg[blue]%}[%n@%m] %{$fg[white]%}%c%{$reset_color%}"
 PROMPT+=' $(git_prompt_info)'
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
