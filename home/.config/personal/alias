@@ -1,25 +1,34 @@
 #!/usr/bin/env zsh
 
-alias dots="dotInstall && source ~/.zshrc"
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias dotInstall="$DOTFILES/mac"
 else
     alias dotInstall="$DOTFILES/linus"
 fi
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+alias dots="dotInstall && source ~/.zshrc"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias up="brew upgrade && bun upgrade && omz update"
+    alias bwtrash='sudo rm -r /Users/y/Library/Caches/Homebrew/downloads/*'
+    alias ollm='open "/Applications/Ollama.app" && clear && ollama run llama3.2'
+else
     alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
+    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && flatpak update -y && omz update -y && sudo apt autoremove -y"
+    alias ins="sudo apt install -y"
+    alias purge="sudo apt purge -y"
+    alias als="sudo apt list --installed | rg"
+    alias armv="sudo apt autoremove -y"
+    alias gedit='gnome-text-editor'
 fi
 
-alias gedit='gnome-text-editor'
 alias ta='tmux attach'
-alias nvm='fnm'
+# alias nvm='fnm'
 alias la='ls -AF'
 alias l='ls -AlF'
 alias zr='source $HOME/.zshrc'
 alias py='python3'
-alias d='cd $HOME/d'
+alias d='cd $HOME/Developer'
 alias wk='cd $HOME/work'
 alias fdh='cd $(find . -type d -not -path "*node_modules*" -print | fzf --height 50%)'
 alias r='ranger'
@@ -34,13 +43,3 @@ alias cdot='commitDotFiles'
 alias top='htop'
 alias lr='l | rg'
 alias vim='nvim'
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias up="brew upgrade && bun upgrade && omz update"
-else
-    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && flatpak update -y && omz update -y && sudo apt autoremove -y"
-    alias ins="sudo apt install -y"
-    alias purge="sudo apt purge -y"
-    alias als="sudo apt list --installed | rg"
-    alias armv="sudo apt autoremove -y"
-fi

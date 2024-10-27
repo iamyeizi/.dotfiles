@@ -7,8 +7,6 @@ addToPath /usr/local/mysql/bin
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	addToPath /opt/homebrew
-fi
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+else
 	addToPath $HOME/.screenlayout
 fi

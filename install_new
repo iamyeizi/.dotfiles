@@ -34,7 +34,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 echo " • Creating directories /d and /work directories..."
-mkdir -p $HOME/d $HOME/work
+mkdir -p $HOME/Developer $HOME/work
 
 echo " • Downloading submodules..."
 git submodule update --init --recursive
@@ -81,7 +81,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write -g NSScrollViewRubberbanding -int 0
     defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
     defaults write -g NSScrollAnimationEnabled -bool false
-    defaults write -g NSWindowResizeTime -float 0.001
+    defaults write -g NSWindowResizeTime -float 0.0
     defaults write -g QLPanelAnimationDuration -float 0
     defaults write -g NSScrollViewRubberbanding -bool false
     defaults write -g NSDocumentRevisionsWindowTransformAnimation -bool false
@@ -97,8 +97,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write com.apple.Mail DisableSendAnimations -bool true
     defaults write com.apple.Mail DisableReplyAnimations -bool true
     defaults write NSGlobalDomain NSWindowResizeTime .001
-    defaults write com.apple.dock expose-animation-duration -int 0; killall Dock
-    defaults write com.apple.dock expose-animation-duration -float 0.1; killall Dock
+    defaults write com.apple.dock expose-animation-duration -float 0.0; killall Dock
 fi
 
 # echo " • Initializing conda..."
@@ -107,6 +106,6 @@ fi
 
 echo "  Installation complete."
 echo ""
-echo "  Rebooting..." 
+echo "  Rebooting..."
 sleep 3
 sudo reboot
