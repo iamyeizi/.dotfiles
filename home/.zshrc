@@ -37,11 +37,10 @@ plugins=(
 	#zsh-syntax-highlighting
 )
 
+bindkey -s ^f "tmux-sessionizer\n"
 
 # MACOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    bindkey -s ^f "tmux-sessionizer\n"
-
     # pnpm
     export PNPM_HOME="$HOME/Library/pnpm"
     export PATH="$PNPM_HOME:$PATH"
