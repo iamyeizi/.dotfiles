@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export STOW_FOLDERS="home"
+    export STOW_FOLDERS="home,macos"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export STOW_FOLDERS="home,linux"
 else
