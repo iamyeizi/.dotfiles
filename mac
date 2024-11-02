@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="home"
+    STOW_FOLDERS="home,macos"
 fi
 
 if [[ -z $DOTFILES ]]; then

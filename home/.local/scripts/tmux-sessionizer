@@ -3,7 +3,13 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/d -mindepth 0 -maxdepth 2 -type d | fzf)
+    selected=$(find ~/ ~/Developer \
+                -mindepth 0 \
+                -maxdepth 3 \
+                -type d     \
+                -not -path "*/node_modules/*" \
+                -not -path "*/Library/*" \
+                | fzf)
 fi
 
 if [[ -z $selected ]]; then

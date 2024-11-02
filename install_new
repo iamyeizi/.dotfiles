@@ -98,6 +98,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write com.apple.Mail DisableReplyAnimations -bool true
     defaults write NSGlobalDomain NSWindowResizeTime .001
     defaults write com.apple.dock expose-animation-duration -float 0.0; killall Dock
+    # Swap winodws with Ctrl+Command
+    defaults write -g NSWindowShouldDragOnGesture -bool true
 fi
 
 # echo " • Initializing conda..."
