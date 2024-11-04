@@ -62,6 +62,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # <<< conda initialize <<<
 
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:/Users/y/.cache/lm-studio/bin"
 fi
 
 # LINUX
@@ -69,6 +72,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     bindkey -s '^[S' "screen_setup\n"
 
     export PATH=$HOME/.local/bin:$PATH
+
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:/home/y/.cache/lm-studio/bin"
 fi
 
 # fnm
@@ -86,5 +92,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/y/.cache/lm-studio/bin"
+
