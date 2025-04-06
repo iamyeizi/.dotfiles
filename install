@@ -96,14 +96,13 @@ function fresh(){
     echo ""
     mkdir -p "$HOME/Developer" "$HOME/opt"
 
+    submodules
     linking
 
     echo " • Installing oh-my-zsh..."
     echo ""
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
 
-    echo ""
-    submodules
 }
 
 function main(){
@@ -111,7 +110,6 @@ function main(){
     read -p " • Fresh installation? (Y/n): " res
     if [[ $res == "Y" || $res == "y" ]]; then
         fresh
-
         echo ""
         echo " • Installation complete ✅"
         echo ""
@@ -119,9 +117,8 @@ function main(){
         sleep 5
         sudo reboot
     elif [[ $res == "N" || $res == "n" ]]; then
-        linking
         submodules
-
+        linking
         echo " • Installation complete ✅"
         echo ""
     else
