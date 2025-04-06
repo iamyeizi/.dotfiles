@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo ""
+echo " --> Stopping TangoPack container... "
+echo ""
+docker stop tangopack
+echo ""
+docker ps
+echo ""
+
+echo " --> Stopping Colima..."
+echo ""
+colima stop
+echo ""
+colima status
+echo ""
+
+
+

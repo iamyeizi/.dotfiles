@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo ""
+echo " --> Starting Colima..."
+echo ""
+colima start --cpu 1 --memory 1 --disk 20 --vm-type vz --vz-rosetta
+echo ""
+colima status
+echo ""
+
+echo " --> Starting TangoPack container... "
+echo ""
+docker start tangopack
+echo ""
+docker ps
+echo ""
+
+

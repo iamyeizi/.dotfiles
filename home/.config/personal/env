@@ -1,13 +1,5 @@
 #!/usr/bin/env zsh
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    export STOW_FOLDERS="home,macos"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    export STOW_FOLDERS="home,linux"
-else
-    echo "==> Unsupported operating system"
-fi
-
 t(){
         tree -a -L $1
 }
@@ -15,20 +7,32 @@ t(){
 fs(){
     local host="$1"
     local ip="192.168.$2"
+    local port=${3:-22}
     local folder
-    case "$OSTYPE" in
-        darwin*)
+
+    echo ""
+    echo " 1. MacOS"
+    echo " 2. Linux"
+    echo ""
+    echo " • Which OS?: "
+    read -r res
+    echo ""
+    if [[ $res == "1" ]]; then
+        folder="/Users/$host"
+    elif [[ $res == "2" ]]; then
+        if [[ $host == "root" ]]; then
+            folder="/"
+        else
             folder="/home/$host"
-            ;;
-        linux-gnu*)
-            folder="/Users/$host"
-            ;;
-        *)
-            echo " -> Unsupported OS type: $OSTYPE"
-            return 1
-            ;;
-    esac
-    sshfs -o default_permissions "$host@$ip:$folder" ~/remote
+        fi
+    else
+        echo " ERROR: Invalid option!"
+        echo ""
+        return
+    fi
+
+    sshfs -o default_permissions -p $port "$host@$ip:$folder" ~/remote
+
     case "$OSTYPE" in
         darwin*)
             open ~/remote
@@ -36,14 +40,14 @@ fs(){
         linux-gnu*)
             nautilus ~/remote
             ;;
+        *)
+            echo " ERROR: Unsupported operating system!"
+            echo " OS: $OSTYPE"
+            ;;
     esac
 }
 
-sdkls(){
-        sdk ls $1 | rg installed
-}
-
-gitCheckout(){
+git_checkout(){
 	if [ $# -eq 0 ]
 	then
 		git checkout $(git branch | fzf --height 20%)
@@ -62,12 +66,4 @@ addToPathFront() {
     if [[ "$PATH" != *"$1"* ]]; then
         export PATH=$1:$PATH
     fi
-}
-
-commitDotFiles() {
-    pushd $DOTFILES
-    git add .
-    git commit -m "automatic commit from hell"
-    git push origin main
-    popd
 }

@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-#addToPathFront /home/
 addToPath $HOME/.local/scripts
-addToPath $HOME/.cargo/bin
-addToPath /usr/local/mysql/bin
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	addToPath /opt/homebrew
-else
-	addToPath $HOME/.screenlayout
 fi

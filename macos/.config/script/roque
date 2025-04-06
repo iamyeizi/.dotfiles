@@ -1,0 +1,65 @@
+#!/bin/bash
+
+echo ""
+echo " HRSP - Port Forwarding"
+echo ""
+echo "  1. VNC"
+echo "  2. RDP"
+echo "  3. Printer Socket/IPP"
+echo "  4. Camera Port"
+echo ""
+read -p " --> " res
+echo ""
+
+case "$res" in
+        "1")
+            echo "  • Protocol VNC"
+            port=5900
+            ;;
+        "2")
+            echo "  • Protocol RDP"
+            port=3389
+            ;;
+        "3")
+            echo "  • Printer Socket/IPP"
+            port=631
+            ;;
+        "4")
+            echo "  • Camera Port"
+            port=5000
+            ;;
+        *) echo " Invalid answer!"
+           echo ""
+           exit 0
+            ;;
+    esac
+
+echo ""
+if [[ $res == "3" || $res == "4" ]]; then
+    read -p " --> Type IP: " input
+    input="192.168.$input"
+else
+    read -p " --> Type IP or Host to connect: " input
+fi
+
+echo ""
+echo " --> Connecting to '$input'..."
+echo ""
+
+case "$port" in
+    "5900")
+        open '/System/Applications/Utilities/Screen Sharing.app'
+        ;;
+    "3389")
+        open '/Applications/Windows App.app'
+        ;;
+    "631")
+        open http://localhost:4000/
+        ;;
+    "5000")
+        vlc udp://localhost:4000/ &
+        ;;
+esac
+
+echo ""
+ssh -L 4000:"$input:$port" infrsp03@100.71.137.109

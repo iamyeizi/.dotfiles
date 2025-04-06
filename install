@@ -1,19 +1,135 @@
 #!/bin/bash
 
-echo " • Symbolic linking..."
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    echo "stow $folder"
-    stow -D $folder
-    stow $folder
-done
-popd
+if [[ -z $STOW_FOLDERS ]]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        export STOW_FOLDERS="home,macos"
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        export STOW_FOLDERS="home"
+    fi
+fi
 
-echo " • Downloading submodules..."
-git submodule update --init --recursive
+if [[ -z $DOTFILES ]]; then
+    export DOTFILES=$HOME/.dotfiles
+fi
 
-# echo " • Initializing conda..."
-# conda init "$(basename "${SHELL}")"
+if [[ -z $XDG_CONFIG_HOME ]]; then
+    export XDG_CONFIG_HOME=$HOME/.config
+fi
 
-echo "  Installation complete."
+function submodules(){
+    echo " • Downloading submodules..."
+    echo ""
+    pushd $DOTFILES > /dev/null
+    git submodule update --init --recursive
+    popd > /dev/null
+}
+
+function linking(){
+    echo ""
+    echo " • Symbolic linking..."
+    echo ""
+    pushd $DOTFILES > /dev/null
+    for folder in $(echo "$STOW_FOLDERS" | sed "s/,/ /g")
+    do
+        stow -D "$folder"
+        stow "$folder"
+    done
+    popd > /dev/null
+}
+
+function fresh(){
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        echo ""
+        echo " • Installing requirements..."
+        echo ""
+        echo " • Installing XCode command line tools..."
+        xcode-select --install
+        echo ""
+        echo " • Installing Homebrew..."
+        echo ""
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        brew install git stow
+
+        echo ""
+        echo " • Installing packages and apps..."
+        echo ""
+        brew bundle --file "$DOTFILES/macos/Brewfile"
+
+        echo ""
+        echo " • Reducing animations..."
+        echo ""
+        defaults write -g NSScrollViewRubberbanding -int 0
+        defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+        defaults write -g NSScrollAnimationEnabled -bool false
+        defaults write -g NSWindowResizeTime -float 0.0
+        defaults write -g QLPanelAnimationDuration -float 0
+        defaults write -g NSScrollViewRubberbanding -bool false
+        defaults write -g NSDocumentRevisionsWindowTransformAnimation -bool false
+        defaults write -g NSToolbarFullScreenAnimationDuration -float 0
+        defaults write -g NSBrowserColumnAnimationSpeedMultiplier -float 0
+        defaults write com.apple.dock autohide-time-modifier -float 0
+        defaults write com.apple.dock autohide-delay -float 0
+        defaults write com.apple.dock expose-animation-duration -float 0
+        defaults write com.apple.dock springboard-show-duration -float 0
+        defaults write com.apple.dock springboard-hide-duration -float 0
+        defaults write com.apple.dock springboard-page-duration -float 0
+        defaults write com.apple.finder DisableAllAnimations -bool true
+        defaults write com.apple.Mail DisableSendAnimations -bool true
+        defaults write com.apple.Mail DisableReplyAnimations -bool true
+        defaults write NSGlobalDomain NSWindowResizeTime .001
+        defaults write com.apple.dock expose-animation-duration -float 0.0; killall Dock
+        # Swap winodws with Ctrl+Command
+        defaults write -g NSWindowShouldDragOnGesture -bool true
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo " • Installing packages and apps..."
+        echo ""
+        sudo apt install -y stow git htop curl ripgrep nmap docker sqlite fzf unzip dconf-editor wget tree tmux jq fd
+        # brew "neovim"
+    else
+        echo " ERROR: Unsupported operating system! 🚨"
+        echo " OS: $OSTYPE"
+        echo ""
+        return
+    fi
+
+    echo " • Creating /Developer and /opt directory..."
+    echo ""
+    mkdir -p "$HOME/Developer" "$HOME/opt"
+
+    linking
+
+    echo " • Installing oh-my-zsh..."
+    echo ""
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
+
+    echo ""
+    submodules
+}
+
+function main(){
+    echo ""
+    read -p " • Fresh installation? (Y/n): " res
+    if [[ $res == "Y" || $res == "y" ]]; then
+        fresh
+
+        echo ""
+        echo " • Installation complete ✅"
+        echo ""
+        echo "  Rebooting in 5s..."
+        sleep 5
+        sudo reboot
+    elif [[ $res == "N" || $res == "n" ]]; then
+        linking
+        submodules
+
+        echo " • Installation complete ✅"
+        echo ""
+    else
+        echo ""
+        echo " ERROR: Invalid option! 🚨"
+        echo ""
+        return
+    fi
+}
+
+main

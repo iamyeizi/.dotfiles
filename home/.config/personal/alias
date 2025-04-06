@@ -1,45 +1,43 @@
 #!/usr/bin/env zsh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias dotInstall="$DOTFILES/mac"
-else
-    alias dotInstall="$DOTFILES/linus"
-fi
-
-alias dots="dotInstall && source ~/.zshrc"
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias up="brew upgrade && bun upgrade && omz update"
-    alias bwtrash='sudo rm -r /Users/y/Library/Caches/Homebrew/downloads/*'
-    alias ollm='open "/Applications/Ollama.app" && clear && ollama run llama3.2'
-else
+    alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+    alias up="omz update && brew upgrade && brew upgrade --cask --greedy && mas upgrade"
+    alias brew-clean='sudo rm -r /Users/y/Library/Caches/Homebrew/downloads/*'
+    alias roque-conn="$HOME/.config/script/roque"
+    alias colima-start="$HOME/.config/script/colima-start"
+    alias colima-stop="$HOME/.config/script/colima-stop"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
-    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && flatpak update -y && omz update -y && sudo apt autoremove -y"
+    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && omz update -y && armv"
     alias ins="sudo apt install -y"
     alias purge="sudo apt purge -y"
     alias als="sudo apt list --installed | rg"
     alias armv="sudo apt autoremove -y"
     alias gedit='gnome-text-editor'
+else
+    echo " ERROR: Unsupported operating system!"
+    echo " OS: $OSTYPE"
 fi
 
-alias ta='tmux attach'
-# alias nvm='fnm'
 alias la='ls -AF'
 alias l='ls -AlF'
+alias ta='tmux attach'
 alias zr='source $HOME/.zshrc'
-alias py='python3'
-alias d='cd $HOME/Developer'
-alias wk='cd $HOME/work'
-alias fdh='cd $(find . -type d -not -path "*node_modules*" -print | fzf --height 50%)'
-alias r='ranger'
+alias py='python'
+alias d="cd $HOME/Developer"
 alias gs='git status'
-alias gr='gir restore'
+alias gp='git push'
+alias gpl='git pull --rebase'
+alias gr='git restore'
 alias gc='git commit -m'
 alias ga='git add'
 alias gd='git diff'
 alias gl='git log'
-alias gck="gitCheckout"
-alias cdot='commitDotFiles'
+alias gck="git_checkout"
 alias top='htop'
 alias lr='l | rg'
-alias vim='nvim'
+alias tango='ssh -p 41061 -X root@localhost'
+alias tango-fs='fs root localhost 41061'
+alias lzd='lazydocker'
+alias doti="$HOME/.dotfiles/install"
