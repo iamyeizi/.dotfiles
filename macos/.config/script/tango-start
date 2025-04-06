@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo ""
+echo " --> Starting Colima with Rosetta..."
+echo ""
+colima start --cpu 1 --memory 1 --disk 20 --vm-type vz --vz-rosetta
+echo ""
+colima status
+echo ""
+
+echo " --> Starting TangoPack container... "
+echo ""
+if [ "$(docker ps -a -q -f name=tangopack)" ]; then
+    docker start tangopack
+else
+    docker run --name tangopack -p 41061:22 -p 41062:80 -p 41063:3306 -d -v ~/my_web_pages:/www tomsik68/xampp:5
+fi
+
+echo ""
+docker ps
+echo ""
+
+echo " Done ✅"
+echo ""

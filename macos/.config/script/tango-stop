@@ -5,8 +5,6 @@ echo " --> Stopping TangoPack container... "
 echo ""
 docker stop tangopack
 echo ""
-docker ps
-echo ""
 
 echo " --> Stopping Colima..."
 echo ""
@@ -15,5 +13,5 @@ echo ""
 colima status
 echo ""
 
-
-
+echo " --> Done ✅"
+echo ""

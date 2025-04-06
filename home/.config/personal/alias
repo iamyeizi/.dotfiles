@@ -5,8 +5,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias up="omz update && brew upgrade && brew upgrade --cask --greedy && mas upgrade"
     alias brew-clean='sudo rm -r /Users/y/Library/Caches/Homebrew/downloads/*'
     alias roque-conn="$HOME/.config/script/roque"
-    alias colima-start="$HOME/.config/script/colima-start"
-    alias colima-stop="$HOME/.config/script/colima-stop"
+    alias tango-start="$HOME/.config/script/tango-start"
+    alias tango-stop="$HOME/.config/script/tango-stop"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
     alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && omz update -y && armv"
