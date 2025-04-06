@@ -83,7 +83,7 @@ function fresh(){
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo " • Installing packages and apps..."
         echo ""
-        sudo apt install -y stow git htop curl ripgrep nmap docker sqlite fzf unzip dconf-editor wget tree tmux jq fd
+        sudo apt install -y stow htop curl ripgrep nmap docker sqlite fzf unzip dconf-editor wget tree tmux jq
         # brew "neovim"
     else
         echo " ERROR: Unsupported operating system! 🚨"
