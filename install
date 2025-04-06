@@ -98,12 +98,14 @@ function fresh(){
     mkdir -p "$HOME/Developer" "$HOME/opt"
 
     submodules
-    linking
 
     echo " • Installing oh-my-zsh..."
     echo ""
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
 
+    rm ~/.zshrc
+
+    linking
 }
 
 function main(){

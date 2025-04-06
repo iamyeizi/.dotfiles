@@ -32,7 +32,4 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-    # Added by LM Studio CLI (lms)
-    export PATH="$PATH:/Users/y/.cache/lm-studio/bin"
 fi
