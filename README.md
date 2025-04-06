@@ -14,8 +14,10 @@ $HOME/.dotfiles/install
 
 ## MacOS Apps
 
-- CapCut
-- Parallels
-- CleanShot X
+- CleanShot
 - LanScan
-- WiFi Explorer Pro 3
+- Office
+- Parallels
+- PDF Search
+- WiFi Explorer
+- [XCode](https://xcodereleases.com/?scope=release)

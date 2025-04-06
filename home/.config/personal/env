@@ -10,11 +10,18 @@ fs(){
     local port=${3:-22}
     local folder
 
+    if [[ -z $host ]]; then
+        echo ""
+        echo " ERROR: Host not provided! 🚨"
+        echo ""
+        return
+    fi
+
     echo ""
     echo " 1. MacOS"
     echo " 2. Linux"
     echo ""
-    echo " • Which OS?: "
+    echo -n " • Which OS?: "
     read -r res
     echo ""
     if [[ $res == "1" ]]; then
@@ -26,7 +33,7 @@ fs(){
             folder="/home/$host"
         fi
     else
-        echo " ERROR: Invalid option!"
+        echo " ERROR: Invalid option! 🚨"
         echo ""
         return
     fi
@@ -41,7 +48,7 @@ fs(){
             nautilus ~/remote
             ;;
         *)
-            echo " ERROR: Unsupported operating system!"
+            echo " ERROR: Unsupported operating system! 🚨"
             echo " OS: $OSTYPE"
             ;;
     esac
