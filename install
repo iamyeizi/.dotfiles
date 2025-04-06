@@ -17,6 +17,7 @@ if [[ -z $XDG_CONFIG_HOME ]]; then
 fi
 
 function submodules(){
+    echo ""
     echo " • Downloading submodules..."
     echo ""
     pushd $DOTFILES > /dev/null
@@ -25,7 +26,6 @@ function submodules(){
 }
 
 function linking(){
-    echo ""
     echo " • Symbolic linking..."
     echo ""
     pushd $DOTFILES > /dev/null
