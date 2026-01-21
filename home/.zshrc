@@ -33,3 +33,13 @@ bindkey -s ^f "tmux-sessionizer\n"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
+
+# bun completions
+[ -s "/Users/y/.bun/_bun" ] && source "/Users/y/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/Users/y/.opencode/bin:$PATH

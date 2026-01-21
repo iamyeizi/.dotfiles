@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-addToPath $HOME/.local/scripts
+addToPathFront "$HOME/opt/node/bin"
+addToPathFront "$HOME/opt/java/bin"
+addToPathFront "$HOME/opt/python/bin"
+addToPathFront "$HOME/opt/python3/bin"
+addToPath "$HOME/.local/scripts"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	addToPath /opt/homebrew

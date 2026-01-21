@@ -55,12 +55,16 @@ fs(){
 }
 
 git_checkout(){
-	if [ $# -eq 0 ]
-	then
-		git checkout $(git branch | fzf --height 20%)
-	else
-		git checkout $@
-	fi
+  if [ $# -eq 0 ]; then
+    branch=$(git branch --all | grep -v HEAD | fzf --height 20% | sed 's/^..//')
+    if [[ $branch == remotes/* ]]; then
+      git checkout --track "${branch#remotes/}"
+    else
+      git checkout "$branch"
+    fi
+  else
+    git checkout "$@"
+  fi
 }
 
 addToPath() {

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo
+echo " Emerger - SSH Port Forwarding"
+echo
+
+echo " 1) localhost"
+echo " 2) 192.168.x.x"
+read -p " Elegí opción [1/2]: " choice
+
+if [[ "$choice" == "1" ]]; then
+    ip="localhost"
+else
+    read -p " IP: 192.168." input
+    ip="192.168.$input"
+fi
+
+read -p " PORT: " port
+echo
+
+# Construcción de fport según la longitud del puerto ingresado
+if [[ ${#port} -le 2 ]]; then
+    fport="1${port}0"   # si es de 2 dígitos, le agrego un cero extra (ej. 22 -> 1220)
+else
+    fport="1${port}"    # caso normal
+fi
+
+protocol="http"
+if [[ "$port" == "8006" || "$port" == "443" ]]; then
+   protocol="https"
+fi
+
+echo " Running on --> $protocol://localhost:$fport/"
+xdg-open "$protocol://localhost:$fport/" 2>/dev/null || open "$protocol://localhost:$fport/"
+echo
+ssh -L "$fport:$ip:$port" emerger
+
