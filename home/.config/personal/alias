@@ -3,14 +3,14 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
     alias up="omz update && brew upgrade && brew upgrade --cask --greedy && mas upgrade && brew cleanup"
-    alias brew-clean='sudo rm -r /Users/y/Library/Caches/Homebrew/downloads/*'
+    alias brew-clean='brew cleanup'
     alias roque-conn="$HOME/.config/script/roque"
     alias cone="$HOME/.config/script/emerger"
     alias tango-start="$HOME/.config/script/tango-start"
     alias tango-stop="$HOME/.config/script/tango-stop"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias myip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
-    alias up="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo snap refresh && omz update -y && armv"
+    alias up="sudo apt update && sudo apt upgrade -y && brew upgrade && brew cleanup && sudo apt autoremove -y && omz update"
     alias ins="sudo apt install -y"
     alias purge="sudo apt purge -y"
     alias als="sudo apt list --installed | rg"
@@ -40,8 +40,10 @@ alias top='htop'
 alias lr='l | rg'
 alias tango='ssh -p 41061 -X root@localhost'
 alias tango-fs='fs root localhost 41061'
-alias lzd='lazydocker'
-alias doti="$HOME/.dotfiles/install"
+if command -v lazydocker >/dev/null 2>&1; then
+    alias lzd='lazydocker'
+fi
+alias doti="$DOTFILES/install"
 alias sse='ssh emerger'
 alias ssj='ssh -X -t juan '\''wsl -e bash -lc "cd; exec bash"'\'''
 alias ssjw='ssh juan'

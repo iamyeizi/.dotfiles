@@ -1,11 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 addToPathFront "$HOME/opt/node/bin"
 addToPathFront "$HOME/opt/java/bin"
 addToPathFront "$HOME/opt/python/bin"
 addToPathFront "$HOME/opt/python3/bin"
 addToPath "$HOME/.local/scripts"
+addToPathFront "$HOME/.bun/bin"
+addToPath "$HOME/.lmstudio/bin"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	addToPath /opt/homebrew
+if [[ "$OSTYPE" == darwin* ]]; then
+    addToPathFront /opt/homebrew/bin
+    addToPathFront /usr/local/bin
+    addToPathFront /opt/homebrew/opt/libxml2/bin
 fi

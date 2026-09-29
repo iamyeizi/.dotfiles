@@ -1,135 +1,241 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-if [[ -z $STOW_FOLDERS ]]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        export STOW_FOLDERS="home,macos"
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        export STOW_FOLDERS="home"
-    fi
-fi
+repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
+target_home=${HOME:?HOME is required}
+state_home=${XDG_STATE_HOME:-$target_home/.local/state}
+state_file=$state_home/dotfiles/installed
+mode=install
+dry_run=0
+install_docker=0
 
-if [[ -z $DOTFILES ]]; then
-    export DOTFILES=$HOME/.dotfiles
-fi
-
-if [[ -z $XDG_CONFIG_HOME ]]; then
-    export XDG_CONFIG_HOME=$HOME/.config
-fi
-
-function submodules(){
-    echo ""
-    echo " • Downloading submodules..."
-    echo ""
-    pushd $DOTFILES > /dev/null
-    git submodule update --init --recursive
-    popd > /dev/null
+usage() {
+    cat <<'HELP'
+Usage: ./install [--reinstall] [--dry-run] [--docker] [--macos-defaults]
+  --reinstall       Repair managed links; install missing packages only.
+  --dry-run         Show the actions without changing the machine.
+  --docker          Install Docker Engine and Compose on Ubuntu/Debian.
+  --macos-defaults  Apply macOS preference changes explicitly.
+HELP
 }
 
-function linking(){
-    echo " • Symbolic linking..."
-    echo ""
-    pushd $DOTFILES > /dev/null
-    for folder in $(echo "$STOW_FOLDERS" | sed "s/,/ /g")
-    do
-        stow -D "$folder"
-        stow "$folder"
+for arg in "$@"; do
+    case $arg in
+        --reinstall) mode=reinstall ;;
+        --dry-run) dry_run=1 ;;
+        --docker) install_docker=1 ;;
+        --macos-defaults) mode=macos-defaults ;;
+        -h|--help) usage; exit 0 ;;
+        *) usage >&2; exit 2 ;;
+    esac
+done
+
+case $(uname -s) in
+    Darwin) platform=macos; packages=(home macos) ;;
+    Linux)
+        if ! command -v apt-get >/dev/null 2>&1; then
+            echo 'Only Ubuntu/Debian (apt) is supported on Linux.' >&2
+            exit 1
+        fi
+        platform=linux; packages=(home) ;;
+    *) echo 'Unsupported operating system.' >&2; exit 1 ;;
+esac
+
+if (( install_docker )) && [[ $platform != linux || $mode == macos-defaults ]]; then
+    echo '--docker is only available for the Linux installation.' >&2
+    exit 2
+fi
+
+run() {
+    if (( dry_run )); then
+        printf 'Would run:'
+        printf ' %q' "$@"
+        printf '\n'
+    else
+        "$@"
+    fi
+}
+
+if [[ -f $state_file ]]; then
+    echo 'Existing dotfiles installation detected.'
+elif [[ -L $target_home/.zshrc && $target_home/.zshrc -ef $repo_dir/home/.zshrc ]]; then
+    echo 'Existing dotfiles links detected; adopting this installation.'
+else
+    echo 'New dotfiles installation detected.'
+fi
+
+apply_macos_defaults() {
+    [[ $platform == macos ]] || { echo 'macOS preferences are only available on macOS.' >&2; exit 1; }
+    local -a settings=(
+        'NSGlobalDomain NSScrollViewRubberbanding -bool false'
+        'NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false'
+        'NSGlobalDomain NSScrollAnimationEnabled -bool false'
+        'NSGlobalDomain NSWindowResizeTime -float 0.001'
+        'NSGlobalDomain QLPanelAnimationDuration -float 0'
+        'NSGlobalDomain NSDocumentRevisionsWindowTransformAnimation -bool false'
+        'NSGlobalDomain NSToolbarFullScreenAnimationDuration -float 0'
+        'NSGlobalDomain NSBrowserColumnAnimationSpeedMultiplier -float 0'
+        'NSGlobalDomain NSWindowShouldDragOnGesture -bool true'
+        'com.apple.dock autohide-time-modifier -float 0'
+        'com.apple.dock autohide-delay -float 0'
+        'com.apple.dock expose-animation-duration -float 0'
+        'com.apple.dock springboard-show-duration -float 0'
+        'com.apple.dock springboard-hide-duration -float 0'
+        'com.apple.dock springboard-page-duration -float 0'
+        'com.apple.finder DisableAllAnimations -bool true'
+        'com.apple.Mail DisableSendAnimations -bool true'
+        'com.apple.Mail DisableReplyAnimations -bool true'
+    )
+    local setting
+    for setting in "${settings[@]}"; do
+        # These entries are fixed in this script, with no user input.
+        read -r -a fields <<< "$setting"
+        run defaults write "${fields[@]}"
     done
-    popd > /dev/null
+    if (( ! dry_run )); then
+        killall Dock 2>/dev/null || true
+    fi
 }
 
-function fresh(){
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        echo ""
-        echo " • Installing requirements..."
-        echo ""
-        echo " • Installing XCode command line tools..."
-        xcode-select --install
-        echo ""
-        echo " • Installing Homebrew..."
-        echo ""
+if [[ $mode == macos-defaults ]]; then
+    apply_macos_defaults
+    exit 0
+fi
+
+load_brew() {
+    local candidate
+    if command -v brew >/dev/null 2>&1; then return 0; fi
+    if [[ $platform == linux ]]; then
+        candidate=/home/linuxbrew/.linuxbrew/bin/brew
+        [[ ! -x $candidate ]] && candidate=$target_home/.linuxbrew/bin/brew
+    elif [[ $(uname -m) == arm64 ]]; then
+        candidate=/opt/homebrew/bin/brew
+    else
+        candidate=/usr/local/bin/brew
+    fi
+    if [[ -x $candidate ]]; then
+        eval "$("$candidate" shellenv)"
+    fi
+}
+
+if [[ $platform == linux ]]; then
+    if [[ $EUID -eq 0 && $dry_run -eq 0 ]]; then
+        echo 'Run this installer as a normal user with sudo, not as root; Homebrew does not run as root.' >&2
+        exit 1
+    fi
+    apt_packages=(build-essential ca-certificates curl file git procps python3 stow zsh unzip sshfs nmap iputils-arping inetutils-telnet xclip wl-clipboard)
+    missing=()
+    for package in "${apt_packages[@]}"; do
+        if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -qx 'install ok installed'; then
+            missing+=("$package")
+        fi
+    done
+    if (( ${#missing[@]} )); then
+        if [[ $EUID -eq 0 ]]; then
+            apt_cmd=(apt-get)
+        else
+            apt_cmd=(sudo apt-get)
+        fi
+        run "${apt_cmd[@]}" update
+        run "${apt_cmd[@]}" install -y "${missing[@]}"
+    else
+        echo 'All Linux packages are installed.'
+    fi
+fi
+
+load_brew
+if ! command -v brew >/dev/null 2>&1; then
+    if [[ $platform == macos ]] && ! xcode-select -p >/dev/null 2>&1; then
+        if (( dry_run )); then
+            echo 'Would request Xcode Command Line Tools, then rerun after installation finishes.'
+        else
+            xcode-select --install || true
+            echo 'Finish installing Xcode Command Line Tools and run ./install again.' >&2
+            exit 1
+        fi
+    fi
+    if (( dry_run )); then
+        echo 'Would install Homebrew using its official installer.'
+    else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        brew install git stow
-
-        echo ""
-        echo " • Installing packages and apps..."
-        echo ""
-        brew bundle --file "$DOTFILES/macos/Brewfile"
-
-        echo ""
-        echo " • Reducing animations..."
-        echo ""
-        defaults write -g NSScrollViewRubberbanding -int 0
-        defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
-        defaults write -g NSScrollAnimationEnabled -bool false
-        defaults write -g NSWindowResizeTime -float 0.0
-        defaults write -g QLPanelAnimationDuration -float 0
-        defaults write -g NSScrollViewRubberbanding -bool false
-        defaults write -g NSDocumentRevisionsWindowTransformAnimation -bool false
-        defaults write -g NSToolbarFullScreenAnimationDuration -float 0
-        defaults write -g NSBrowserColumnAnimationSpeedMultiplier -float 0
-        defaults write com.apple.dock autohide-time-modifier -float 0
-        defaults write com.apple.dock autohide-delay -float 0
-        defaults write com.apple.dock expose-animation-duration -float 0
-        defaults write com.apple.dock springboard-show-duration -float 0
-        defaults write com.apple.dock springboard-hide-duration -float 0
-        defaults write com.apple.dock springboard-page-duration -float 0
-        defaults write com.apple.finder DisableAllAnimations -bool true
-        defaults write com.apple.Mail DisableSendAnimations -bool true
-        defaults write com.apple.Mail DisableReplyAnimations -bool true
-        defaults write NSGlobalDomain NSWindowResizeTime .001
-        defaults write com.apple.dock expose-animation-duration -float 0.0; killall Dock
-        # Swap winodws with Ctrl+Command
-        defaults write -g NSWindowShouldDragOnGesture -bool true
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo " • Installing packages and apps..."
-        echo ""
-        sudo apt install -y zsh stow htop curl ripgrep nmap docker sqlite fzf unzip dconf-editor wget tree tmux jq
-        chsh -s "$(which zsh)"
-        # brew "neovim"
-    else
-        echo " ERROR: Unsupported operating system! 🚨"
-        echo " OS: $OSTYPE"
-        echo ""
-        return
+        load_brew
     fi
+fi
+if ! command -v brew >/dev/null 2>&1 && (( ! dry_run )); then
+    echo 'Homebrew installation did not complete.' >&2
+    exit 1
+fi
 
-    echo " • Creating /Developer and /opt directory..."
-    echo ""
-    mkdir -p "$HOME/Developer" "$HOME/opt"
+if [[ $platform == macos ]] && ! command -v zsh >/dev/null 2>&1; then
+    run brew install zsh
+fi
+for brewfile in "$repo_dir/Brewfile.common" "$repo_dir/Brewfile.$platform"; do
+    run brew bundle --file "$brewfile" --no-upgrade
+done
 
-    submodules
+if ! command -v zsh >/dev/null 2>&1 && (( ! dry_run )); then
+    echo 'Zsh installation did not complete.' >&2
+    exit 1
+fi
 
-    echo " • Installing oh-my-zsh..."
-    echo ""
-    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -
-
-    rm ~/.zshrc
-
-    linking
-}
-
-function main(){
-    echo ""
-    read -p " • Fresh installation? (Y/n): " res
-    if [[ $res == "Y" || $res == "y" ]]; then
-        fresh
-        echo ""
-        echo " • Installation complete ✅"
-        echo ""
-        echo "  Rebooting in 5s..."
-        sleep 5
-        sudo reboot
-    elif [[ $res == "N" || $res == "n" ]]; then
-        submodules
-        linking
-        echo " • Installation complete ✅"
-        echo ""
+if [[ ${SHELL:-} != */zsh ]]; then
+    if (( dry_run )); then
+        echo 'Would set Zsh as the login shell.'
     else
-        echo ""
-        echo " ERROR: Invalid option! 🚨"
-        echo ""
-        return
+        zsh_path=$(command -v zsh)
+        if [[ $platform == macos && -x /bin/zsh ]]; then zsh_path=/bin/zsh; fi
+        if ! chsh -s "$zsh_path"; then
+            echo "Could not change the login shell. Run: chsh -s $zsh_path" >&2
+        fi
     fi
-}
+fi
 
-main
+if [[ ! -f $target_home/.oh-my-zsh/oh-my-zsh.sh ]]; then
+    if [[ -e $target_home/.oh-my-zsh ]]; then
+        echo "Existing $target_home/.oh-my-zsh is incomplete; move or repair it first." >&2
+        exit 1
+    fi
+    run git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git "$target_home/.oh-my-zsh"
+fi
+
+if [[ ! -f $repo_dir/home/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ||
+      ! -f $repo_dir/home/.config/zsh/custom/plugins/zsh-completions/zsh-completions.plugin.zsh ]]; then
+    run git -C "$repo_dir" submodule update --init --recursive
+fi
+
+if ! command -v stow >/dev/null 2>&1 && (( ! dry_run )); then
+    echo 'Stow installation did not complete.' >&2
+    exit 1
+fi
+if ! command -v python3 >/dev/null 2>&1 && (( ! dry_run )); then
+    echo 'Python 3 installation did not complete.' >&2
+    exit 1
+fi
+
+if (( ! dry_run )); then
+    mkdir -p "$(dirname "$state_file")"
+fi
+
+link_args=(--repo "$repo_dir" --target "$target_home" --state "$state_home" --mode "$mode")
+if (( dry_run )); then
+    link_args+=(--dry-run)
+    if command -v python3 >/dev/null 2>&1; then
+        python3 "$repo_dir/scripts/link.py" "${link_args[@]}" "${packages[@]}"
+    else
+        echo 'Would check link conflicts after installing Python 3.'
+    fi
+else
+    python3 "$repo_dir/scripts/link.py" "${link_args[@]}" "${packages[@]}"
+fi
+
+if (( install_docker )); then
+    docker_args=()
+    if (( dry_run )); then docker_args+=(--dry-run); fi
+    "$repo_dir/scripts/install-docker-linux.sh" "${docker_args[@]}"
+fi
+
+if (( ! dry_run )); then
+    mkdir -p "$(dirname "$state_file")"
+    printf 'repo=%s\nplatform=%s\n' "$repo_dir" "$platform" > "$state_file"
+    echo 'Dotfiles installation complete. Open a new shell to load the configuration.'
+fi

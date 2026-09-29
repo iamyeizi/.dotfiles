@@ -68,13 +68,9 @@ git_checkout(){
 }
 
 addToPath() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$PATH:$1
-    fi
+    [[ -d $1 && :$PATH: != *:$1:* ]] && export PATH="$PATH:$1"
 }
 
 addToPathFront() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$1:$PATH
-    fi
+    [[ -d $1 && :$PATH: != *:$1:* ]] && export PATH="$1:$PATH"
 }
